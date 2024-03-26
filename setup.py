@@ -11,14 +11,11 @@ docs_dependencies = []
 dev_dependencies = test_dependencies + lint_dependencies + docs_dependencies + ["ipdb"]
 deploy_dependencies = ["api-client"]
 
-
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-
 with open("VERSION", "r") as buf:
     version = buf.read()
-
 
 setuptools.setup(
     name='vandarpy',

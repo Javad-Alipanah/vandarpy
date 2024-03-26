@@ -7,6 +7,7 @@ name = "pypi"
 api-client = "==1.3.1"
 pytest = "==8.1.1"
 pytest-runner = "==6.0.1"
+coverage = "==7.4.4"
 
 [dev-packages]
 
