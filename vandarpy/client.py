@@ -20,7 +20,7 @@ class VandarClient(APIClient):
             response_handler=JsonResponseHandler,
             request_formatter=JsonRequestFormatter,
         )
-        self._scheduler = Timer(5.0, self._authentication_method.refresh, (self,))
+        self._scheduler = Timer(0.000001, self._authentication_method.refresh, (self,))
         self._scheduler.start()
 
     def _get_instance(self, url: str, model: Type[BaseModel]) -> BaseModel:

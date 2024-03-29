@@ -24,5 +24,5 @@ def test_refresh_token():
         refresh_token="refresh_token",
     )
     client.set_request_strategy(mock_req_strategy)
-    time.sleep(7)
+    time.sleep(0.1)
     assert client.get_authentication_method()._token == "new_token"  # Refreshed token
