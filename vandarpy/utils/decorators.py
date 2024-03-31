@@ -1,6 +1,3 @@
-import re
-
-
 def endpoint(cls_=None, base_class=None, base_url=None):
     """Decorator for automatically constructing urls from a base_url and defined resources."""
 

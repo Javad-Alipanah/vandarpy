@@ -1,6 +1,7 @@
+import logging
 from threading import Timer
 from typing import Type, Optional
-import logging
+
 from apiclient import APIClient, JsonResponseHandler, JsonRequestFormatter
 from apiclient.exceptions import APIClientError
 
@@ -8,6 +9,7 @@ from vandarpy.auth import RefreshTokenAuthentication
 from vandarpy.exceptions import VandarError
 from vandarpy.handlers.business import BusinessHandler
 from vandarpy.models.base import BaseModel
+
 LOG = logging.getLogger(__name__)
 
 

@@ -1,5 +1,7 @@
-import pytest
 import threading
+
+import pytest
+
 from tests.helpers import MockRequestStrategy
 from vandarpy.client import VandarClient
 
