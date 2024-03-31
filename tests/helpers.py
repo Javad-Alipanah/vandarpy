@@ -10,18 +10,8 @@ from apiclient.utils.typing import OptionalDict
 
 class MockRequestStrategy(RequestStrategy):
     def __init__(self):
-        self.endpoints = {
-            "https://api.vandar.io/v3/refreshtoken/": {
-                "POST": {
-                    "response": {
-                        "token_type": "Bearer",
-                        "access_token": "new_token",
-                        "refresh_token": "new_refresh_token",
-                        "expires_in": 3600,
-                    },
-                },
-            },
-        }
+        with open("tests/endpoints.json", 'r', encoding="utf-8") as f:
+            self.endpoints = json.load(f)
 
     def _make_request(
             self,

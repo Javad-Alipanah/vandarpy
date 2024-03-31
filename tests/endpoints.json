@@ -1,0 +1,330 @@
+{
+  "https://api.vandar.io/v3/refreshtoken/": {
+    "POST": {
+      "response": {
+        "token_type": "Bearer",
+        "access_token": "new_token",
+        "refresh_token": "new_refresh_token",
+        "expires_in": 3600
+      }
+    }
+  },
+  "https://api.vandar.io/v2/business/test": {
+    "GET": {
+      "response": {
+        "status": 1,
+        "data": {
+          "id": 123,
+          "uuid": "12345678-1234-1234-1234-123456789012",
+          "active": 1,
+          "business_name": "TEST",
+          "business_name_fa": "تست",
+          "legal_business_name": null,
+          "business_owner_is_business_legal_owner": null,
+          "national_id": null,
+          "business_type": "personal",
+          "phone_number": "12345678",
+          "tax_code": "1234567890",
+          "tax_code_detail": {
+            "tax_code_status": "SUCCEED",
+            "message": null
+          },
+          "enamad_detail": {
+            "enamad_status": null,
+            "code": null
+          },
+          "postal_code": "1234567890",
+          "postal_code_detail": {
+            "postal_code_status": "SUCCEED",
+            "message": null
+          },
+          "national_code_detail": {
+            "national_code_status": "SUCCEED",
+            "message": null
+          },
+          "address_detail": {
+            "provinces": "تهران",
+            "provinces_id": 8,
+            "provinces_code": "021",
+            "city": "تهران",
+            "city_id": 140,
+            "local": null,
+            "local_id": null,
+            "address": "تهران"
+          },
+          "city_id": null,
+          "mcc_code": "12345678",
+          "address": null,
+          "wallet": 0,
+          "deductible_amount": 0,
+          "payment_facilitator_wallet": 0,
+          "blocked_amount": 0,
+          "avatar": "businesses/avatars/123.png",
+          "automatic_settlement_tip": true,
+          "settlement_schedule": "OFF",
+          "default_iban": "IR123456789012345678901234",
+          "ayandeh_default_iban": null,
+          "statusBox": {
+            "payment_required": false,
+            "national_card_photo": "accepted",
+            "official_Newspaper": "accepted",
+            "introduction_letter": "accepted"
+          },
+          "status": 1,
+          "today_transactions": 0,
+          "today_settlements": 0,
+          "role_name": "مالک",
+          "role": "owner",
+          "permissions": [
+            "business_setting",
+            "add_iban",
+            "remove_iban",
+            "view_dashboard",
+            "create_request_forms",
+            "view_gateway_ipgs",
+            "create_gateway_ipgs",
+            "edit_gateway_ipgs",
+            "view_transactions_report",
+            "view_settlements",
+            "add_settlements",
+            "edit_settlements",
+            "view_request_forms",
+            "generate_token",
+            "view_suspicious",
+            "update_suspicious"
+          ],
+          "has_shaparak_terminal": true,
+          "tools": {
+            "ipg": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": "call operation",
+              "viewable": true,
+              "name_fa": "درگاه پرداخت",
+              "name_en": "ipg"
+            },
+            "subscription": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": "call operation",
+              "viewable": true,
+              "name_fa": "پرداخت خودکار",
+              "name_en": "subscription"
+            },
+            "requestMoney": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "فرم پرداخت",
+              "name_en": "requestMoney"
+            },
+            "api": {
+              "is_enabled": false,
+              "is_created": false,
+              "status": "INACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "وب‌سرویس",
+              "name_en": "api"
+            },
+            "customer": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "مشتریان",
+              "name_en": "customer"
+            },
+            "log": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "گزارش فراخوانی",
+              "name_en": "log"
+            },
+            "p2p": {
+              "is_enabled": false,
+              "is_created": false,
+              "status": "",
+              "time": null,
+              "viewable": false,
+              "name_fa": "انتقال وجه",
+              "name_en": "p2p"
+            },
+            "refund": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": null,
+              "viewable": false,
+              "name_fa": "بازگشت وجه",
+              "name_en": "refund"
+            },
+            "settlement_batch": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "برداشت گروهی",
+              "name_en": "settlement_batch"
+            },
+            "cash-in": {
+              "is_enabled": false,
+              "is_created": false,
+              "status": "INACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "واریز بانکی",
+              "name_en": "cash-in"
+            },
+            "kerdar": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "کردار",
+              "name_en": "kerdar"
+            },
+            "pos": {
+              "is_enabled": false,
+              "is_created": false,
+              "status": "INACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "کارتخوان",
+              "name_en": "pos"
+            },
+            "accountant": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "گزارش‌های مالی",
+              "name_en": "accountant"
+            },
+            "PBV": {
+              "is_enabled": false,
+              "is_created": false,
+              "status": "INACTIVE",
+              "time": null,
+              "viewable": true,
+              "name_fa": "پرداخت با وندار",
+              "name_en": "PBV"
+            },
+            "A2A": {
+              "is_enabled": true,
+              "is_created": true,
+              "status": "ACTIVE",
+              "time": null,
+              "viewable": false,
+              "name_fa": "حساب به حساب",
+              "name_en": "A2A"
+            },
+            "miando": {
+              "is_enabled": true,
+              "is_created": false,
+              "status": "PENDING",
+              "time": "call operation",
+              "viewable": false,
+              "name_fa": "معامله امن",
+              "name_en": "miando"
+            },
+            "MPG": {
+              "is_enabled": false,
+              "is_created": false,
+              "status": "INACTIVE",
+              "time": "call operation",
+              "viewable": false,
+              "name_fa": "پرداخت یکپارچه",
+              "name_en": "MPG"
+            }
+          },
+          "ipg_status": {
+            "url": {
+              "value": null,
+              "time": null,
+              "status": null
+            },
+            "website_name": {
+              "value": null,
+              "time": null,
+              "status": null
+            }
+          },
+          "accept_business_time_prediction": "business already accepted",
+          "has_rejection": true,
+          "rejects": {
+            "company_name_fa": null,
+            "national_code": null,
+            "default_iban": null,
+            "legal_name": null,
+            "business_license_image": null,
+            "introduction_letter": null,
+            "national_image": null,
+            "address": null,
+            "phone_number": null,
+            "postal_code": null,
+            "ipg_url": null,
+            "register_number": null,
+            "register_date": null,
+            "birth_certificate_number": null
+          },
+          "cash_in_contracts": null,
+          "cash_in_code": null,
+          "owner": {
+            "birthdate": "1300/01/01",
+            "birth_certificate_number": "1234567890",
+            "national_code": "1234567890"
+          },
+          "high_value_fee": 0.02,
+          "need_shaparak_iban": false,
+          "pic_suspicious_check": 1
+        }
+      }
+    }
+  },
+  "https://api.vandar.io/v2/business/test/iam": {
+    "GET": {
+      "response": {
+        "status": 1,
+        "data": {
+          "page": 1,
+          "per_page": 10,
+          "total": 1,
+          "last_page": 1,
+          "users": [
+            {
+              "name": "مالک تست زاده",
+              "avatar": "https://cdn.vandar.io/core/",
+              "role": "مالک کسب و کار",
+              "is_two_factor": false,
+              "status": 1,
+              "role_id": 0,
+              "id": null
+            },
+            {
+              "name": "مدیر تست نژاد",
+              "user_id": 12345,
+              "avatar": "https://cdn.vandar.io/core/",
+              "role": "مدیر",
+              "status": 1,
+              "role_id": 1,
+              "is_two_factor": null,
+              "id": 1234
+            }
+          ]
+        }
+      }
+    }
+  }
+}
