@@ -23,14 +23,7 @@ def _process_class(cls, base_class, base_url):
         base_url = base_url.rstrip("/")
 
     if base_class is not None:
-        # remove the base url from the base class.
-        pattern = r"(?:https://|http://)?[^/]*(.*)"
-        regex = re.compile(pattern)
-        for name, value in base_class.__dict__.items():
-            if name.startswith("_"):
-                # Ignore any private or class attributes.
-                continue
-            setattr(cls, name, ''.join(regex.match(value).groups()))
+        base_url = f"{base_class.base_url.rstrip('/')}/{base_url.lstrip('/')}"
 
     for name, value in cls.__dict__.items():
         if name.startswith("_"):
@@ -39,4 +32,5 @@ def _process_class(cls, base_class, base_url):
         new_value = str(value).lstrip("/")
         resource = f"{base_url}/{new_value}"
         setattr(cls, name, resource)
+    setattr(cls, "base_url", base_url)
     return cls
