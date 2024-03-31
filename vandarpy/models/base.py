@@ -37,5 +37,10 @@ class BaseModel:
         return data
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict):
+        if 'data' in data and 'status' in data:
+            if data.get('status', 1) != 1:
+                raise ValueError(data.get('message', 'Unknown error'))
+            if 'status' in data:
+                return cls(**data['data'])
         return cls(**data)

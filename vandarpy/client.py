@@ -6,7 +6,7 @@ from apiclient.exceptions import APIClientError
 
 from vandarpy.auth import RefreshTokenAuthentication
 from vandarpy.exceptions import VandarError
-from vandarpy.models.auth import Token
+from vandarpy.handlers.business import BusinessHandler
 from vandarpy.models.base import BaseModel
 LOG = logging.getLogger(__name__)
 
@@ -53,17 +53,13 @@ class VandarClient(APIClient):
             LOG.error(f"Failed to update instance: {e}")
             raise VandarError(e)
 
-    def token(self, refresh_token: str) -> Token:
-        try:
-            return cast(
-                Token,
-                Token.from_dict(self.post(EndpointBase.refresh_token, {"refreshtoken": refresh_token}))
-            )
-        except APIClientError as e:
-            raise VandarError(e)
     @property
     def token(self) -> str:
         return self._authentication_method.token
+
+    @property
+    def business(self) -> BusinessHandler:
+        return BusinessHandler(self)
 
     def reschedule_token_refresh(self, seconds: int):
         if self._scheduler.is_alive():
