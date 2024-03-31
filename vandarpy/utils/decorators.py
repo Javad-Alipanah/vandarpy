@@ -23,7 +23,7 @@ def _process_class(cls, base_class, base_url):
         base_url = base_url.rstrip("/")
 
     if base_class is not None:
-        base_url = f"{base_class.base_url.rstrip('/')}/{base_url.lstrip('/')}"
+        base_url = f"{base_class.base_url.rstrip('/')}/{base_url.lstrip('/')}".rstrip("/")
 
     for name, value in cls.__dict__.items():
         if name.startswith("_"):
