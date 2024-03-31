@@ -14,7 +14,7 @@ LOG = logging.getLogger(__name__)
 class VandarClient(APIClient):
     _authentication_method: RefreshTokenAuthentication
 
-    def __init__(self, token: str, refresh_token: str):
+    def __init__(self, token: str, refresh_token: str, business_name: Optional[str] = None):
         super().__init__(
             authentication_method=RefreshTokenAuthentication(token=token, refresh_token=refresh_token),
             response_handler=JsonResponseHandler,
@@ -22,6 +22,7 @@ class VandarClient(APIClient):
         )
         self._scheduler = Timer(0.000001, self._authentication_method.refresh, (self,))
         self._scheduler.start()
+        self._business = BusinessHandler(self, business_name) if business_name is not None else None
 
     def get_instance(self, url: str, model: Type[BaseModel]) -> BaseModel:
         try:
@@ -59,7 +60,13 @@ class VandarClient(APIClient):
 
     @property
     def business(self) -> BusinessHandler:
-        return BusinessHandler(self)
+        if self._business is None:
+            raise VandarError("Business name is not set.")
+        return self._business
+
+    @business.setter
+    def business(self, name: str):
+        self._business = BusinessHandler(self, name)
 
     def reschedule_token_refresh(self, seconds: int):
         if self._scheduler.is_alive():
