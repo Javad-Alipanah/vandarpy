@@ -4,7 +4,8 @@ from apiclient.exceptions import APIClientError
 
 from vandarpy.exceptions import VandarError
 from vandarpy.handlers.base import BaseHandler
-from vandarpy.models.business import Business, Iam
+from vandarpy.models.business.business import Business
+from vandarpy.models.business.iam import Iam
 from vandarpy.endpoints.buisiness import BusinessEndpoint
 
 
