@@ -18,17 +18,22 @@ class BaseModel:
     def __setitem__(self, key, value):
         setattr(self, key, value)
 
+    @staticmethod
+    def _recursive_to_dict(data):
+        if isinstance(data, BaseModel):
+            return data.to_dict()
+        elif isinstance(data, Enum):
+            return data.value
+        elif isinstance(data, list):
+            return [BaseModel._recursive_to_dict(i) for i in data]
+        elif isinstance(data, dict):
+            return {k: BaseModel._recursive_to_dict(v) for k, v in data.items()}
+        return data
+
     def to_dict(self):
         data = {}
         for k, v in self.__dict__.items():
-            if isinstance(v, BaseModel):
-                data[k] = v.to_dict()
-            elif isinstance(v, Enum):
-                data[k] = v.value
-            elif isinstance(v, list):
-                data[k] = [i.to_dict() if isinstance(i, BaseModel) else i for i in v]
-            else:
-                data[k] = v
+            data[k] = BaseModel._recursive_to_dict(v)
         return data
 
     @classmethod
