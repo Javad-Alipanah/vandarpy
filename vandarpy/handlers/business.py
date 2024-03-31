@@ -47,3 +47,10 @@ class BusinessHandler(BaseHandler):
                 break
 
         return Iam.from_dict({'users': users})
+
+    @property
+    def wallet(self) -> Wallet:
+        return cast(
+            Wallet,
+            self._client.get_instance(BusinessEndpoint.balance.format(name=self._name), Wallet)
+        )

@@ -2,8 +2,10 @@ from vandarpy.endpoints.base import EndpointBase
 from vandarpy.utils.decorators import endpoint
 
 
-@endpoint(base_url="/v2/business/", base_class=EndpointBase)
+@endpoint(base_url="/", base_class=EndpointBase)
 class BusinessEndpoint:
-    info = "/{name}"
+    info = "/v2/business/{name}"
     # Identity and Access Management
-    iam = "/{name}/iam"
+    iam = "/v2/business/{name}/iam"
+    # invoice
+    balance = "/v2/business/{name}/balance"
