@@ -326,5 +326,18 @@
         }
       }
     }
+  },
+  "https://api.vandar.io/v2/business/test/balance": {
+    "GET": {
+      "response": {
+        "status": 1,
+        "data": {
+          "wallet": 0,
+          "wallet_without_payment_facilitator_wallet": 0,
+          "payment_facilitator_wallet": 0,
+          "currency": "Toman"
+        }
+      }
+    }
   }
 }
