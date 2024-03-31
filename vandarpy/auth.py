@@ -1,8 +1,8 @@
-import logging
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, cast
 
 from apiclient.authentication_methods import HeaderAuthentication
 
+from vandarpy.endpoints.base import EndpointBase
 from vandarpy.exceptions import VandarError
 from vandarpy.models.auth import Token
 
@@ -11,7 +11,6 @@ if TYPE_CHECKING:  # pragma: no cover
     # using type-hinting.
     from vandarpy.client import VandarClient
 
-LOG = logging.getLogger(__name__)
 DEFAULT_REFRESH_TOKEN_BACKOFF = 60 * 10  # 10 minutes
 
 
@@ -23,9 +22,12 @@ class RefreshTokenAuthentication(HeaderAuthentication):
     def refresh(self, client: "VandarClient"):
         token: Optional[Token] = None
         try:
-            token: Token = client.token(self._refresh_token)
-        except VandarError as e:
-            LOG.error(f"Failed to refresh token: {e}")
+            token = cast(
+                Token,
+                client.create_instance(EndpointBase.refresh_token, {"refreshtoken": self._refresh_token}, Token)
+            )
+        except VandarError:
+            pass
         else:
             self._token = token.access_token
             self._refresh_token = token.refresh_token
@@ -33,3 +35,11 @@ class RefreshTokenAuthentication(HeaderAuthentication):
             return client.reschedule_token_refresh(
                 DEFAULT_REFRESH_TOKEN_BACKOFF if token is None else token.expires_in // 10
             )
+
+    @property
+    def token(self) -> str:
+        return self._token
+
+    @property
+    def refresh_token(self) -> str:
+        return self._refresh_token

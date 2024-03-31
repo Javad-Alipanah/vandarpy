@@ -18,6 +18,15 @@ class Token(BaseModel):
         super().__init__(token_type=token_type, expires_in=expires_in, access_token=access_token,
                          refresh_token=refresh_token, **kwargs)
 
+    @classmethod
+    def from_dict(cls, data: dict):
+        return Token(
+            token_type=Token.Type(data["token_type"]),
+            expires_in=data["expires_in"],
+            access_token=data["access_token"],
+            refresh_token=data["refresh_token"],
+        )
+
     def __str__(self):
         return f"{self.token_type} token with {self.expires_in} seconds expiration"
 
