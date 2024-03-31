@@ -8,9 +8,10 @@ def test_get_business():
     client = VandarClient(
         token="token",
         refresh_token="refresh_token",
+        business_name="test"
     )
     client.set_request_strategy(mock_req_strategy)
-    b = client.business.info("test")
+    b = client.business.info
     assert b.to_dict() == mock_req_strategy.endpoints[BusinessEndpoint.info.format(name="test")]["GET"]["response"]["data"]
 
 
@@ -19,7 +20,8 @@ def test_get_business_iam():
     client = VandarClient(
         token="token",
         refresh_token="refresh_token",
+        business_name="test"
     )
     client.set_request_strategy(mock_req_strategy)
-    iam = client.business.iam("test")
+    iam = client.business.iam
     assert iam.to_dict()['users'] == mock_req_strategy.endpoints[BusinessEndpoint.iam.format(name="test")]["GET"]["response"]['data']["users"]

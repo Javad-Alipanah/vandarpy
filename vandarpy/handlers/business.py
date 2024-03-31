@@ -21,12 +21,14 @@ class BusinessHandler(BaseHandler):
         super().__init__(client)
         self._name = name
 
+    @property
     def info(self) -> Business:
         return cast(
             Business,
             self._client.get_instance(BusinessEndpoint.info.format(name=self._name), Business)
         )
 
+    @property
     def iam(self) -> Iam:
         page = 1
         per_page = 10
