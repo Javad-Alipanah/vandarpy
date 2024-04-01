@@ -1,9 +1,14 @@
-from enum import Enum
 from typing import Optional, Union, List, Dict
 
 from vandarpy.models.base import BaseModel
 from datetime import date
 from persiantools.jdatetime import JalaliDate, JalaliDateTime
+from enum import Enum
+
+
+class Port(Enum):
+    SAMAN = "SAMAN"
+    BEHPARDAKHT = "BEHPARDAKHT"
 
 
 class TransactionFilter(BaseModel):
@@ -96,10 +101,6 @@ class Transaction(BaseModel):
         SUBSCRIPTION = 6
         RETURNED_FROM_BANK_OR_VANDAR = -6
 
-    class PORT(Enum):
-        SAMAN = "SAMAN"
-        BEHPARDAKHT = "BEHPARDAKHT"
-
     class Person(BaseModel):
         ip: Optional[str]
         iban: Optional[str]
@@ -155,7 +156,7 @@ class Transaction(BaseModel):
     form_title: Optional[str]
     settlement: Optional[str]
     settlement_port: Optional[str]
-    port: PORT
+    port: Port
     comments: List[str]
     api_token: Optional[str]
     logs: List[str]
@@ -181,7 +182,7 @@ class Transaction(BaseModel):
         if 'receiver' in kwargs:
             self.receiver = self.Person(**kwargs['receiver'])
         if 'port' in kwargs:
-            self.port = self.PORT(kwargs['port'])
+            self.port = Port(kwargs['port'])
         if 'status' in kwargs:
             self.status = self.Status(kwargs['status'])
 
