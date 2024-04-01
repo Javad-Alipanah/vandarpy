@@ -29,3 +29,7 @@ class IPGHandler(BaseHandler):
         if 'status' not in response or response['status'] != 1:
             raise VandarError(f"Failed to get token: {response['errors']}")
         return response['token']
+
+    @staticmethod
+    def get_redirect_url(token: str) -> str:
+        return IPGEndpoint.redirect.format(token=token)
