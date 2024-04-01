@@ -8,6 +8,7 @@ from apiclient.exceptions import APIClientError
 from vandarpy.auth import RefreshTokenAuthentication
 from vandarpy.exceptions import VandarError
 from vandarpy.handlers.business import BusinessHandler
+from vandarpy.handlers.ipg import IPGHandler
 from vandarpy.models.base import BaseModel
 
 LOG = logging.getLogger(__name__)
@@ -16,9 +17,12 @@ LOG = logging.getLogger(__name__)
 class VandarClient(APIClient):
     _authentication_method: RefreshTokenAuthentication
     _business: Optional[BusinessHandler]
+    _ipg: Optional[IPGHandler]
     _scheduler: Timer
 
-    def __init__(self, token: str, refresh_token: str, business_name: Optional[str] = None):
+    def __init__(self, token: str, refresh_token: str,
+                 business_name: Optional[str] = None,
+                 ipg_api_key: Optional[str] = None):
         super().__init__(
             authentication_method=RefreshTokenAuthentication(token=token, refresh_token=refresh_token),
             response_handler=JsonResponseHandler,
@@ -27,6 +31,7 @@ class VandarClient(APIClient):
         self._scheduler = Timer(0.000001, self._authentication_method.refresh, (self,))
         self._scheduler.start()
         self._business = BusinessHandler(self, business_name) if business_name is not None else None
+        self._ipg = IPGHandler(self, ipg_api_key) if ipg_api_key is not None else None
 
     def get_instance(self, url: str, model: Type[BaseModel], params: Optional[dict] = None) -> BaseModel:
         try:
@@ -75,6 +80,16 @@ class VandarClient(APIClient):
     @business.setter
     def business(self, name: str):
         self._business = BusinessHandler(self, name)
+
+    @property
+    def ipg(self) -> IPGHandler:
+        if self._ipg is None:
+            raise VandarError("IPG API key is not set.")
+        return self._ipg
+
+    @ipg.setter
+    def ipg(self, api_key: str):
+        self._ipg = IPGHandler(self, api_key)
 
     def reschedule_token_refresh(self, seconds: int):
         if self._scheduler.is_alive():
