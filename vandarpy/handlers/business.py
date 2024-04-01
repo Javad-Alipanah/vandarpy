@@ -54,7 +54,6 @@ class BusinessHandler(BaseHandler):
 
         return users
 
-
     @property
     def wallet(self) -> Wallet:
         return cast(
