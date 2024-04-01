@@ -15,6 +15,8 @@ LOG = logging.getLogger(__name__)
 
 class VandarClient(APIClient):
     _authentication_method: RefreshTokenAuthentication
+    _business: Optional[BusinessHandler]
+    _scheduler: Timer
 
     def __init__(self, token: str, refresh_token: str, business_name: Optional[str] = None):
         super().__init__(
