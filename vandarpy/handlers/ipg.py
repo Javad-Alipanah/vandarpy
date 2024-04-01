@@ -1,4 +1,6 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
+
+from apiclient.exceptions import APIClientError
 
 from vandarpy.exceptions import VandarError
 
@@ -8,7 +10,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from vandarpy.client import VandarClient
 from vandarpy.endpoints.ipg import IPGEndpoint
 from vandarpy.handlers.base import BaseHandler
-from vandarpy.models.ipg import Payment
+from vandarpy.models.ipg import Payment, Transaction
 
 
 class IPGHandler(BaseHandler):
@@ -37,3 +39,17 @@ class IPGHandler(BaseHandler):
     @staticmethod
     def get_redirect_url(token: str) -> str:
         return IPGEndpoint.redirect.format(token=token)
+
+    def get_transaction_info(self, token: str) -> Transaction:
+        return cast(
+            Transaction,
+            self._client.create_instance(IPGEndpoint.info,
+                                         data={"token": token, "api_key": self._api_key}, model=Transaction)
+        )
+
+    def verify_transaction(self, token: str) -> Transaction:
+        return cast(
+            Transaction,
+            self._client.create_instance(IPGEndpoint.verify,
+                                         data={"token": token, "api_key": self._api_key}, model=Transaction)
+        )

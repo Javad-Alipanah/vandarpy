@@ -5,5 +5,5 @@ from vandarpy.utils.decorators import endpoint
 class IPGEndpoint:
     token = "/api/v3/send"
     redirect = "/v3/{token}"
-    info = "/api/v3/transaction/"
-    verify = "/api/v3/verify/"
+    info = "/api/v3/transaction"
+    verify = "/api/v3/verify"
