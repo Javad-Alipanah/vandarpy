@@ -18,6 +18,10 @@ class IPGHandler(BaseHandler):
         self._api_key = api_key
 
     def get_payment(self, amount: int, callback_url: str) -> Payment:
+        """Create a new Payment object.
+        By calling this method, you can create a new Payment object
+        Be sure to fill the desired fields before calling get_token method.
+        """
         return Payment(api_key=self._api_key, amount=amount, callback_url=callback_url)
 
     def get_token(self, payment: Payment) -> str:
