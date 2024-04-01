@@ -425,5 +425,13 @@
         ]
       }
     }
+  },
+  "https://ipg.vandar.io/api/v3/send": {
+    "POST": {
+      "response": {
+        "status": 1,
+        "token": "token"
+      }
+    }
   }
 }

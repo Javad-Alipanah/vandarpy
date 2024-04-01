@@ -22,7 +22,8 @@ def client():
     client = VandarClient(
         token="token",
         refresh_token="refresh_token",
-        business_name="test"
+        business_name="test",
+        ipg_api_key="ipg_api_key"
     )
     client.set_request_strategy(mock_req_strategy)
     return client
