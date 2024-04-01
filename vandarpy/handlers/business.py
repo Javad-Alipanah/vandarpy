@@ -1,5 +1,6 @@
 from typing import TYPE_CHECKING, Optional, List
 
+from vandarpy.models.business.refund import Refund
 from vandarpy.models.business.transaction import TransactionFilter, Transaction
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -82,3 +83,26 @@ class BusinessHandler(BaseHandler):
             raise VandarError(e)
 
         return transactions
+
+    # FIXME: This method is not tested properly
+    def refund(self,
+               transaction_id: int,
+               amount: Optional[int] = None,
+               comment: Optional[str] = None,
+               description: Optional[str] = None,
+               notify_url: Optional[str] = None,
+               payment_number: Optional[str] = None) -> Refund:
+        data = {
+            'amount': amount,
+            'comment': comment,
+            'description': description,
+            'notify_url': notify_url,
+            'payment_number': payment_number
+        }
+        data = {k: v for k, v in data.items() if v is not None}
+        return cast(
+            Refund,
+            self._client.create_instance(
+                BusinessEndpoint.refund.format(name=self._name, transaction_id=transaction_id), data=data, model=Refund
+            )
+        )

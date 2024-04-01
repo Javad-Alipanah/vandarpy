@@ -26,3 +26,11 @@ def test_get_transactions(client):
     assert [t.to_dict() for t in transactions] == \
            client.get_request_strategy().endpoints[BusinessEndpoint.transactions.format(name="test")]["GET"][
                "response"]["data"]
+
+
+def test_refund_transaction(client):
+    transaction_id = 12345
+    refund = client.business.refund(transaction_id)
+    assert refund.to_dict() == \
+           client.get_request_strategy().endpoints[
+               BusinessEndpoint.refund.format(name="test", transaction_id=transaction_id)]["POST"]["response"]["data"]

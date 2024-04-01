@@ -11,3 +11,5 @@ class BusinessEndpoint:
     balance = "/v2/business/{name}/balance"
 
     transactions = "/v3/business/{name}/transaction"
+
+    refund = "/v3/business/{name}/transaction/{transaction_id}/refund"
