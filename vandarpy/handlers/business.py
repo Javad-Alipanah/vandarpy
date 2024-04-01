@@ -11,7 +11,7 @@ from apiclient.exceptions import APIClientError
 from vandarpy.exceptions import VandarError
 from vandarpy.handlers.base import BaseHandler
 from vandarpy.models.business.business import Business
-from vandarpy.models.business.iam import Iam
+from vandarpy.models.business.iam import User
 from vandarpy.endpoints.buisiness import BusinessEndpoint
 from vandarpy.models.business.wallet import Wallet
 
@@ -30,10 +30,10 @@ class BusinessHandler(BaseHandler):
         )
 
     @property
-    def iam(self) -> Iam:
+    def iam(self) -> List[User]:
         page = 1
         per_page = 10
-        users = []
+        users: List[User] = []
         while True:
             try:
                 response = self._client.get(
@@ -42,14 +42,16 @@ class BusinessHandler(BaseHandler):
                 )
                 if not response.get('data') or not response['data'].get('users'):
                     break
-                users.extend(response['data']['users'])
+                for user in response['data']['users']:
+                    users.append(User.from_dict(user))
                 page += 1
             except APIClientError as e:
                 raise VandarError(e)
             if page > response['data']['last_page']:
                 break
 
-        return Iam.from_dict({'users': users})
+        return users
+
 
     @property
     def wallet(self) -> Wallet:

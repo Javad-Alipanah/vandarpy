@@ -11,7 +11,7 @@ def test_get_business(client):
 
 def test_get_business_iam(client):
     iam = client.business.iam
-    assert iam.to_dict()['users'] == client.get_request_strategy().endpoints[BusinessEndpoint.iam.format(name="test")]["GET"]["response"]['data']["users"]
+    assert [u.to_dict() for u in iam] == client.get_request_strategy().endpoints[BusinessEndpoint.iam.format(name="test")]["GET"]["response"]['data']["users"]
 
 
 def test_get_wallet(client):
