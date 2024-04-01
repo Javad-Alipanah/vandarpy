@@ -17,3 +17,8 @@ def test_get_business_iam(client):
 def test_get_wallet(client):
     wallet = client.business.wallet
     assert wallet.to_dict() == client.get_request_strategy().endpoints[BusinessEndpoint.balance.format(name="test")]["GET"]["response"]["data"]
+
+
+def test_get_transactions(client):
+    transactions = client.business.transactions()
+    assert [t.to_dict() for t in transactions] == client.get_request_strategy().endpoints[BusinessEndpoint.transactions.format(name="test")]["GET"]["response"]["data"]

@@ -339,5 +339,91 @@
         }
       }
     }
+  },
+  "https://api.vandar.io/v3/business/test/transaction": {
+    "GET": {
+      "response": {
+        "status": 1,
+        "has_more": false,
+        "data": [
+          {
+            "id": 123456789012,
+            "track_id": null,
+            "uuid": "12345678-1234-1234-1234-123456748912",
+            "amount": 1000,
+            "wage": 792,
+            "status": 1,
+            "ref_id": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnop",
+            "tracking_code": "12345678901",
+            "card_number": "123456******1234",
+            "cid": "dlsfjlkjdflksdjfoiewfjsdl;kjlasdkjfoew;jofidlkjsdfl;askdjfofjfsf",
+            "verified": 0,
+            "channel": "فرم دریافت پول",
+            "payment_date": "22:12:50 - 1403/1/12",
+            "payment_number": null,
+            "created_at": "22:10:15 - 1403/1/12",
+            "effective_at_jalali": "22:12:50 - 1403/1/12",
+            "effective_time_stamp": 1711910570,
+            "updated_at": "22:12:50 - 1403/1/12",
+            "wallet": 88,
+            "result": "تراکنش موفق",
+            "description": null,
+            "factorNumber": null,
+            "mobile": null,
+            "callback_url": null,
+            "form_id": 12345,
+            "form_title": "تست",
+            "settlement": null,
+            "settlement_port": null,
+            "port": "SAMAN",
+            "comments": [],
+            "api_token": null,
+            "logs": [],
+            "revised_transaction_id": null,
+            "refund": null,
+            "refund_detail_ids": [],
+            "is_shaparak_port": true,
+            "payer": {
+              "ip": "1.1.1.1",
+              "iban": null,
+              "name": "تست فقیر",
+              "slug": null,
+              "avatar": null,
+              "legal_name": null,
+              "business_owner": null,
+              "email": null,
+              "phone": null,
+              "address": null,
+              "mobile": null,
+              "additional_fields": [],
+              "description": null
+            },
+            "receiver": {
+              "name": null,
+              "legal_name": null,
+              "slug": null,
+              "avatar": null,
+              "business_owner": null,
+              "iban": null,
+              "bank_name": null
+            },
+            "receipt_url": null,
+            "time_prediction": {
+              "is_admin_check_status": false,
+              "has_change_done_time_prediction": false,
+              "is_cancelable": true,
+              "has_change_port_to_paya": false,
+              "settlement_done_time_prediction": null,
+              "settlement_cancelable_time": null,
+              "is_settlement_paya_report_finally": null,
+              "settlement_paya_report_finally_time": null,
+              "is_after_time_prediction": null,
+              "is_after_cancelable": null,
+              "p2p_time_prediction": null
+            }
+          }
+        ]
+      }
+    }
   }
 }
