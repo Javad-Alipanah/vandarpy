@@ -26,31 +26,35 @@ class VandarClient(APIClient):
         self._scheduler.start()
         self._business = BusinessHandler(self, business_name) if business_name is not None else None
 
-    def get_instance(self, url: str, model: Type[BaseModel]) -> BaseModel:
+    def get_instance(self, url: str, model: Type[BaseModel], params: Optional[dict] = None) -> BaseModel:
         try:
-            return model.from_dict(self.get(url))
+            return model.from_dict(self.get(url, params=params))
         except APIClientError as e:
             LOG.error(f"Failed to get instance: {e}")
             raise VandarError(e)
 
-    def get_instances(self, url: str, model: Type[BaseModel]) -> list[BaseModel]:
+    def get_instances(self, url: str, model: Type[BaseModel], params: Optional[dict] = None) -> list[BaseModel]:
         try:
-            return [model.from_dict(data) for data in self.get(url)]
+            return [model.from_dict(data) for data in self.get(url, params=params)]
         except APIClientError as e:
             LOG.error(f"Failed to get instances: {e}")
             raise VandarError(e)
 
-    def create_instance(self, url: str, data: dict, model: Optional[Type[BaseModel]] = None) -> Optional[BaseModel]:
+    def create_instance(self, url: str, data: dict,
+                        model: Optional[Type[BaseModel]] = None,
+                        params: Optional[dict] = None) -> Optional[BaseModel]:
         try:
-            result = self.post(url, data)
+            result = self.post(url, data, params=params)
             return model.from_dict(result) if model else None
         except APIClientError as e:
             LOG.error(f"Failed to create instance: {e}")
             raise VandarError(e)
 
-    def put_instance(self, url: str, data: dict, model: Optional[Type[BaseModel]] = None) -> Optional[BaseModel]:
+    def put_instance(self, url: str, data: dict,
+                     model: Optional[Type[BaseModel]] = None,
+                     params: Optional[dict] = None) -> Optional[BaseModel]:
         try:
-            result = self.put(url, data)
+            result = self.put(url, data, params=params)
             return model.from_dict(result) if model else None
         except APIClientError as e:
             LOG.error(f"Failed to update instance: {e}")
