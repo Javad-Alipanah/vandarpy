@@ -433,5 +433,47 @@
         "token": "token"
       }
     }
+  },
+  "https://ipg.vandar.io/api/v3/transaction": {
+    "POST": {
+      "response": {
+        "status": 1,
+        "amount": "15500.00",
+        "realAmount": 10000,
+        "wage": "5500",
+        "transId": 123456789101,
+        "refnumber": "a;dslkfjlsdkfjslkdfjsl;dfj;slkdfjlskdjf;fj",
+        "trackingCode": "12345678910",
+        "factorNumber": "12345",
+        "description": "description",
+        "mobile": "09123456789",
+        "cardNumber": "123412******1238",
+        "createdAt": "2024-04-01 21:54:38",
+        "paymentStart": "Mon Apr 01 2024 21:54:38 GMT+0330",
+        "paymentDate": "2024-04-01 21:56:23",
+        "cid": "86CEB9B01E8596F6131728120339792CA302E8099F2D2265F4597FC831A3B8C0",
+        "code": 2,
+        "port": "SAMAN",
+        "message": "Verified"
+      }
+    }
+  },
+  "https://ipg.vandar.io/api/v3/verify": {
+    "POST": {
+      "response": {
+        "status": 1,
+        "amount": "15500.00",
+        "realAmount": 10000,
+        "wage": "5500",
+        "transId": 123456789101,
+        "factorNumber": "12345",
+        "mobile": "09123456789",
+        "description": "description",
+        "cardNumber": "123412******1238",
+        "paymentDate": "2024-04-01 21:56:23",
+        "cid": "86CEB9B01E8596F6131728120339792CA302E8099F2D2265F4597FC831A3B8C0",
+        "message": "ok"
+      }
+    }
   }
 }
