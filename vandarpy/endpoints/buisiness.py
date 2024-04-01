@@ -9,3 +9,5 @@ class BusinessEndpoint:
     iam = "/v2/business/{name}/iam"
     # invoice
     balance = "/v2/business/{name}/balance"
+
+    transactions = "/v3/business/{name}/transaction"

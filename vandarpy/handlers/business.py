@@ -1,4 +1,6 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional, List
+
+from vandarpy.models.business.transaction import TransactionFilter, Transaction
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
@@ -59,3 +61,25 @@ class BusinessHandler(BaseHandler):
             Wallet,
             self._client.get_instance(BusinessEndpoint.balance.format(name=self._name), Wallet)
         )
+
+    def transactions(self, transaction_filter: Optional[TransactionFilter] = None) -> List[Transaction]:
+        transactions: List[Transaction] = []
+        transaction_filter = transaction_filter or TransactionFilter()
+        has_more = True
+        try:
+            while has_more:
+                response = self._client.get(
+                    BusinessEndpoint.transactions.format(name=self._name),
+                    params=transaction_filter.to_dict()
+                )
+                if not response.get('data') or response.get('status') != 1:
+                    raise VandarError(response)
+                for transaction in response['data']:
+                    transactions.append(Transaction.from_dict(transaction))
+                has_more = response['has_more']
+                if len(transactions) > 0:
+                    transaction_filter.start_after = transactions[-1].id
+        except APIClientError as e:
+            raise VandarError(e)
+
+        return transactions
