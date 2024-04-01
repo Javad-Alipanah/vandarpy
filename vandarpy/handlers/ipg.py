@@ -25,9 +25,13 @@ class IPGHandler(BaseHandler):
         return Payment(api_key=self._api_key, amount=amount, callback_url=callback_url)
 
     def get_token(self, payment: Payment) -> str:
-        response = self._client.post(IPGEndpoint.token, payment.to_dict())
-        if 'status' not in response or response['status'] != 1:
-            raise VandarError(f"Failed to get token: {response['errors']}")
+        try:
+            response = self._client.post(IPGEndpoint.token, payment.to_dict())
+            if 'status' not in response or response['status'] != 1:
+                raise VandarError(f"Failed to get token: {response['errors']}")
+        except APIClientError as e:
+            raise VandarError(e)
+
         return response['token']
 
     @staticmethod
