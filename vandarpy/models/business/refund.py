@@ -5,7 +5,6 @@ from persiantools.jdatetime import JalaliDateTime
 from vandarpy.models.base import BaseModel
 
 
-# FIXME: This model is not tested properly
 class Refund(BaseModel):
     class Result(BaseModel):
         id: str
@@ -30,6 +29,7 @@ class Refund(BaseModel):
                              wage=wage, payment_number=payment_number, status=status, description=description,
                              wallet=wallet,
                              refund_date=refund_date, created_at=created_at, receipt_url=receipt_url, **kwargs)
+            self.wallet = int(wallet)
             self.refund_date = JalaliDateTime.strptime(self.refund_date, '%Y/%m/%d %H:%M:%S')
             self.created_at = JalaliDateTime.strptime(self.created_at, '%Y/%m/%d %H:%M:%S')
 
@@ -37,6 +37,7 @@ class Refund(BaseModel):
             d = {k: v for k, v in self.__dict__.items()}
             d['refund_date'] = d['refund_date'].strftime('%Y/%m/%d %H:%M:%S')
             d['created_at'] = d['created_at'].strftime('%Y/%m/%d %H:%M:%S')
+            d['wallet'] = str(d['wallet'])
             return d
 
     message: str

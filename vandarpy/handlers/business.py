@@ -84,7 +84,6 @@ class BusinessHandler(BaseHandler):
 
         return transactions
 
-    # FIXME: This method is not tested properly
     def refund(self,
                transaction_id: int,
                amount: Optional[int] = None,
@@ -93,7 +92,7 @@ class BusinessHandler(BaseHandler):
                notify_url: Optional[str] = None,
                payment_number: Optional[str] = None) -> Refund:
         data = {
-            'amount': amount,
+            'amount': f"{amount:.2f}" if amount is not None else amount,
             'comment': comment,
             'description': description,
             'notify_url': notify_url,
