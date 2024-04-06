@@ -141,7 +141,7 @@ class Transaction(BaseModel):
     cid: str
     verified: int
     channel: str
-    payment_date: JalaliDateTime
+    payment_date: Optional[JalaliDateTime]
     payment_number: Optional[str]
     created_at: JalaliDateTime
     effective_at_jalali: JalaliDateTime
@@ -157,7 +157,7 @@ class Transaction(BaseModel):
     form_title: Optional[str]
     settlement: Optional[str]
     settlement_port: Optional[str]
-    port: Port
+    port: Optional[Port]
     comments: List[str]
     api_token: Optional[str]
     logs: List[str]
@@ -172,7 +172,8 @@ class Transaction(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.payment_date = JalaliDateTime.strptime(self.payment_date, "%H:%M:%S - %Y/%m/%d")
+        if self.payment_date is not None:
+            self.payment_date = JalaliDateTime.strptime(self.payment_date, "%H:%M:%S - %Y/%m/%d")
         self.created_at = JalaliDateTime.strptime(self.created_at, "%H:%M:%S - %Y/%m/%d")
         self.effective_at_jalali = JalaliDateTime.strptime(self.effective_at_jalali, "%H:%M:%S - %Y/%m/%d")
         self.updated_at = JalaliDateTime.strptime(self.updated_at, "%H:%M:%S - %Y/%m/%d")
@@ -182,7 +183,7 @@ class Transaction(BaseModel):
             self.payer = self.Person(**kwargs['payer'])
         if 'receiver' in kwargs:
             self.receiver = self.Person(**kwargs['receiver'])
-        if 'port' in kwargs:
+        if 'port' in kwargs and kwargs['port'] is not None:
             self.port = Port(kwargs['port'])
         if 'status' in kwargs:
             self.status = self.Status(kwargs['status'])
