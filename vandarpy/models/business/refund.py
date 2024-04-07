@@ -41,3 +41,15 @@ class Refund(BaseModel):
         d['wallet'] = str(d['wallet'])
         d['status'] = d['status'].value
         return d
+
+    def is_successful(self) -> bool:
+        return self.status == Status.DONE
+
+    def is_pending(self) -> bool:
+        return self.status == Status.PENDING
+
+    def is_failed(self) -> bool:
+        return self.status == Status.FAILED
+
+    def is_canceled(self) -> bool:
+        return self.status == Status.CANCELED
