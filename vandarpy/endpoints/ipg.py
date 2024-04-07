@@ -1,9 +1,8 @@
 from vandarpy.utils.decorators import endpoint
 
 
-@endpoint(base_url="https://ipg.vandar.io")
+@endpoint(label="IPG", aliases={'send': 'token', 'transaction_info': 'info'})
 class IPGEndpoint:
-    token = "/api/v3/send"
+    token = ""
+    info = ""
     redirect = "/v3/{token}"
-    info = "/api/v3/transaction"
-    verify = "/api/v3/verify"

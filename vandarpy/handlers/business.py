@@ -1,5 +1,7 @@
 from typing import TYPE_CHECKING, Optional, List
 
+from vandarpy.endpoints.invoice import InvoiceEndpoint
+from vandarpy.endpoints.refund import RefundEndpoint
 from vandarpy.models.business.refund import Refund
 from vandarpy.models.business.transaction import TransactionFilter, Transaction
 
@@ -29,7 +31,7 @@ class BusinessHandler(BaseHandler):
     def info(self) -> Business:
         return cast(
             Business,
-            self._client.get_instance(BusinessEndpoint.info.format(name=self._name), Business)
+            self._client.get_instance(BusinessEndpoint.info.format(business=self._name), Business)
         )
 
     @property
@@ -40,7 +42,7 @@ class BusinessHandler(BaseHandler):
         while True:
             try:
                 response = self._client.get(
-                    BusinessEndpoint.iam.format(name=self._name),
+                    BusinessEndpoint.iam.format(business=self._name),
                     params={'page': page, 'per_page': per_page}
                 )
                 if not response.get('data') or not response['data'].get('users'):
@@ -59,7 +61,7 @@ class BusinessHandler(BaseHandler):
     def wallet(self) -> Wallet:
         return cast(
             Wallet,
-            self._client.get_instance(BusinessEndpoint.balance.format(name=self._name), Wallet)
+            self._client.get_instance(InvoiceEndpoint.balance.format(business=self._name), Wallet)
         )
 
     def transactions(self, transaction_filter: Optional[TransactionFilter] = None) -> List[Transaction]:
@@ -69,7 +71,7 @@ class BusinessHandler(BaseHandler):
         try:
             while has_more:
                 response = self._client.get(
-                    BusinessEndpoint.transactions.format(name=self._name),
+                    InvoiceEndpoint.transactions.format(business=self._name),
                     params=transaction_filter.to_dict()
                 )
                 if not response.get('data') or response.get('status') != 1:
@@ -102,6 +104,6 @@ class BusinessHandler(BaseHandler):
         return cast(
             Refund,
             self._client.create_instance(
-                BusinessEndpoint.refund.format(name=self._name, transaction_id=transaction_id), data=data, model=Refund
+                RefundEndpoint.refund.format(business=self._name, transaction_id=transaction_id), data=data, model=Refund
             )
         )

@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING, Optional, cast
 
 from apiclient.authentication_methods import HeaderAuthentication
 
-from vandarpy.endpoints.base import EndpointBase
+from vandarpy.endpoints.auth import AuthEndpoint
 from vandarpy.exceptions import VandarError
 from vandarpy.models.auth import Token
 
@@ -24,7 +24,7 @@ class RefreshTokenAuthentication(HeaderAuthentication):
         try:
             token = cast(
                 Token,
-                client.create_instance(EndpointBase.refresh_token, {"refreshtoken": self._refresh_token}, Token)
+                client.create_instance(AuthEndpoint.refresh_token, {"refreshtoken": self._refresh_token}, Token)
             )
         except VandarError:
             pass

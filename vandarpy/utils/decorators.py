@@ -1,8 +1,13 @@
-def endpoint(cls_=None, base_class=None, base_url=None):
+import os.path
+import re
+import yaml
+
+
+def endpoint(cls_=None, label: str = None, include_children: bool = False, aliases: dict = None):
     """Decorator for automatically constructing urls from a base_url and defined resources."""
 
     def wrap(cls):
-        return _process_class(cls, base_class, base_url)
+        return _process_class(cls, label, include_children, aliases)
 
     if cls_ is None:
         # Decorator is called as @endpoint with parens.
@@ -11,23 +16,25 @@ def endpoint(cls_=None, base_class=None, base_url=None):
     return wrap(cls_)
 
 
-def _process_class(cls, base_class, base_url):
-    if base_url is None:
+def _process_class(cls, label: str, include_children: bool, aliases: dict = None):
+    if label is None:
         raise RuntimeError(
-            "A decorated endpoint must define a base_url as @endpoint(base_url='http://foo.com')."
+            "A decorated endpoint must define a label as @endpoint(label='Business')."
         )
+    if not include_children:
+        label_pattern = re.compile(r"^{name}$".format(name=label), re.IGNORECASE)
     else:
-        base_url = base_url.rstrip("/")
+        label_pattern = re.compile(r"^{name}.*$".format(name=label), re.IGNORECASE)
 
-    if base_class is not None:
-        base_url = f"{base_class.base_url.rstrip('/')}/{base_url.lstrip('/')}".rstrip("/")
+    endpoints_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "endpoints.yaml")
+    with open(endpoints_path, "r") as file:
+        endpoints = yaml.safe_load(file)
 
-    for name, value in cls.__dict__.items():
-        if name.startswith("_"):
-            # Ignore any private or class attributes.
-            continue
-        new_value = str(value).lstrip("/")
-        resource = f"{base_url}/{new_value}"
-        setattr(cls, name, resource)
-    setattr(cls, "base_url", base_url)
+    for subdomain, versions in endpoints['subdomains'].items():
+        for version, resources in versions.items():
+            for resource, data in resources.items():
+                if label_pattern.match(data['label']):
+                    url = data['full_path']
+                    name = resource if aliases is None or resource not in aliases else aliases[resource]
+                    setattr(cls, name, url)
     return cls

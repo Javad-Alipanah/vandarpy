@@ -1,5 +1,5 @@
 {
-  "https://api.vandar.io/v3/refreshtoken/": {
+  "https://api.vandar.io/v3/refreshtoken": {
     "POST": {
       "response": {
         "token_type": "Bearer",
