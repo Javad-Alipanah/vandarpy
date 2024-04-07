@@ -27,6 +27,11 @@ setuptools.setup(
     author='Javad Alipanah',
     author_email='javadalipanah@gmail.com',
     url='https://github.com/Javad-Alipanah/vandarpy',
+    entry_points={
+        'console_scripts': [
+            'endpoints = vandarpy.endpoints_cmd:main',
+        ],
+    },
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Programming Language :: Python :: 3.11",
