@@ -3,6 +3,7 @@ from typing import Optional, List, Dict
 from persiantools.jdatetime import JalaliDateTime
 
 from vandarpy.models.base import BaseModel
+from vandarpy.models.settlement import Status
 
 
 class Refund(BaseModel):
@@ -12,7 +13,7 @@ class Refund(BaseModel):
     amount: int
     wage: int
     payment_number: Optional[str]
-    status: str
+    status: Status
     description: str
     wallet: int
     refund_date: JalaliDateTime
@@ -29,6 +30,7 @@ class Refund(BaseModel):
                          wallet=wallet,
                          refund_date=refund_date, created_at=created_at, receipt_url=receipt_url, **kwargs)
         self.wallet = int(wallet)
+        self.status = Status(status)
         self.refund_date = JalaliDateTime.strptime(self.refund_date, '%Y/%m/%d %H:%M:%S')
         self.created_at = JalaliDateTime.strptime(self.created_at, '%Y/%m/%d %H:%M:%S')
 
@@ -37,4 +39,5 @@ class Refund(BaseModel):
         d['refund_date'] = d['refund_date'].strftime('%Y/%m/%d %H:%M:%S')
         d['created_at'] = d['created_at'].strftime('%Y/%m/%d %H:%M:%S')
         d['wallet'] = str(d['wallet'])
+        d['status'] = d['status'].value
         return d
