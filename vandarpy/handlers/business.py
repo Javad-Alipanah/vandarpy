@@ -2,8 +2,10 @@ from typing import TYPE_CHECKING, Optional, List
 
 from vandarpy.endpoints.invoice import InvoiceEndpoint
 from vandarpy.endpoints.refund import RefundEndpoint
+from vandarpy.handlers.settlement import SettlementHandler
 from vandarpy.models.business.refund import Refund
 from vandarpy.models.business.transaction import TransactionFilter, Transaction
+from vandarpy.models.settlement import Settlement
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
@@ -26,6 +28,7 @@ class BusinessHandler(BaseHandler):
     def __init__(self, client: "VandarClient", name: str):
         super().__init__(client)
         self._name = name
+        self._settlement_handler = SettlementHandler(client, name)
 
     @property
     def info(self) -> Business:
@@ -109,3 +112,7 @@ class BusinessHandler(BaseHandler):
         except APIClientError as e:
             raise VandarError(e)
         return [Refund.from_dict(refund) for refund in response['data']['results']]
+
+    @property
+    def settlements(self) -> List[Settlement]:
+        return self._settlement_handler.settlements

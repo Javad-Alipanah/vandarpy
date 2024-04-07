@@ -582,5 +582,57 @@
         }
       }
     }
+  },
+  "https://api.vandar.io/v2.1/business/test/settlement": {
+    "GET": {
+      "response": {
+        "status": 1,
+        "data": {
+          "wallet": 123456,
+          "blocked_amount": 0,
+          "deductible_amount": 123456,
+          "currency": "Toman",
+          "settlements": {
+            "data": [
+              {
+                "id": "12345678-1234-1234-1234-212584566264",
+                "iban_id": null,
+                "gateway_transaction_id": 123456789012,
+                "amount": 12345,
+                "payment_number": null,
+                "status": "DONE",
+                "wallet": 1234556,
+                "settlement_date": "2020-01-01",
+                "settlement_done_time_prediction": "2020-01-01 01:01:01",
+                "description": "بازگشت وجه تراکنش 4589498465684"
+              },
+              {
+                "id": "65326492-1245-1245-5461-124856151245",
+                "iban_id": null,
+                "gateway_transaction_id": 123546524892,
+                "amount": 12354,
+                "payment_number": null,
+                "status": "DONE",
+                "wallet": 6841521,
+                "settlement_date": "2021-01-11",
+                "settlement_done_time_prediction": "2021-01-11 01:02:03",
+                "description": "بازگشت وجه تراکنش 16451265486"
+              }
+            ],
+            "first": "https://api.vandar.io/v2.1/business/test/settlement?page=1",
+            "last": "https://api.vandar.io/v2.1/business/test/settlement?page=1",
+            "prev": null,
+            "next": null,
+            "current_page": 1,
+            "from": 1,
+            "last_page": 1,
+            "path": "https://api.vandar.io/v2.1/business/test/settlement",
+            "per_page": 5,
+            "to": 2,
+            "total": 2
+          }
+        }
+      }
+    }
   }
 }
