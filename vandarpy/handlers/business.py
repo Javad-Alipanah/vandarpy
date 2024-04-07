@@ -5,7 +5,7 @@ from vandarpy.endpoints.refund import RefundEndpoint
 from vandarpy.handlers.settlement import SettlementHandler
 from vandarpy.models.business.refund import Refund
 from vandarpy.models.business.transaction import TransactionFilter, Transaction
-from vandarpy.models.settlement import Settlement
+from vandarpy.models.settlement.settlement import Settlement
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when

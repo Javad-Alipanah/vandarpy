@@ -3,7 +3,7 @@ from typing import Optional, List, Dict
 from persiantools.jdatetime import JalaliDateTime
 
 from vandarpy.models.base import BaseModel
-from vandarpy.models.settlement import Status
+from vandarpy.models.settlement.settlement import Status
 
 
 class Refund(BaseModel):

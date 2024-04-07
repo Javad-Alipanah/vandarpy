@@ -9,7 +9,7 @@ from apiclient.exceptions import APIClientError
 from vandarpy.endpoints.settlement import SettlementEndpoint
 from vandarpy.exceptions import VandarError
 from vandarpy.handlers.base import BaseHandler
-from vandarpy.models.settlement import Settlement
+from vandarpy.models.settlement.settlement import Settlement
 
 
 class SettlementHandler(BaseHandler):
