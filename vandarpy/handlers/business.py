@@ -92,7 +92,7 @@ class BusinessHandler(BaseHandler):
                comment: Optional[str] = None,
                description: Optional[str] = None,
                notify_url: Optional[str] = None,
-               payment_number: Optional[str] = None) -> Refund:
+               payment_number: Optional[str] = None) -> List[Refund]:
         data = {
             'amount': f"{amount:.2f}" if amount is not None else amount,
             'comment': comment,
@@ -101,9 +101,11 @@ class BusinessHandler(BaseHandler):
             'payment_number': payment_number
         }
         data = {k: v for k, v in data.items() if v is not None}
-        return cast(
-            Refund,
-            self._client.create_instance(
-                RefundEndpoint.refund.format(business=self._name, transaction_id=transaction_id), data=data, model=Refund
+        try:
+            response = self._client.post(
+                RefundEndpoint.refund.format(business=self._name, transaction_id=transaction_id),
+                data=data
             )
-        )
+        except APIClientError as e:
+            raise VandarError(e)
+        return [Refund.from_dict(refund) for refund in response['data']['results']]

@@ -32,7 +32,7 @@ def test_get_transactions(client):
 
 def test_refund_transaction(client):
     transaction_id = 12345
-    refund = client.business.refund(transaction_id)
-    assert refund.to_dict() == \
-           client.get_request_strategy().endpoints[
-               RefundEndpoint.refund.format(business="test", transaction_id=transaction_id)]["POST"]["response"]["data"]
+    refunds = client.business.refund(transaction_id)
+    assert all(refund.to_dict() == client.get_request_strategy().endpoints[
+               RefundEndpoint.refund.format(business="test", transaction_id=transaction_id)
+    ]["POST"]["response"]["data"]['results'][i] for i, refund in enumerate(refunds))
