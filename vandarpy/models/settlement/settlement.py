@@ -8,6 +8,7 @@ from vandarpy.models.base import BaseModel
 class Status(Enum):
     PENDING = "PENDING"
     INITIATED = "INIT"
+    SUBMITTED = "SUBMITTED"
     DONE = "DONE"
     FAILED = "FAILED"
     CANCELED = "CANCELED"
