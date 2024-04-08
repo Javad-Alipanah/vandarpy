@@ -1277,5 +1277,43 @@
         ]
       }
     }
+  },
+  "https://api.vandar.io/v3/business/test/settlement/store": {
+    "POST": {
+      "response": {
+        "status": 1,
+        "data": {
+          "settlement": [
+            {
+              "id": "12345678-1234-1234-1234-123456789012",
+              "iban_id": "43210432-4321-4321-4321-987456523562",
+              "transaction_id": 123456789012,
+              "amount": 500000,
+              "amount_toman": 50000,
+              "wage_toman": 2200,
+              "payment_number": null,
+              "status": "PENDING",
+              "wallet": "1234560",
+              "description": "Sample Settlement",
+              "settlement_date": "2020-01-01",
+              "settlement_time": "01:01:01",
+              "settlement_date_jalali": "1401/01/01",
+              "settlement_done_time_prediction": "1401/01/01 01:01:01",
+              "is_instant": true,
+              "prediction": {
+                "amount": 500000,
+                "date": "1401/1/10",
+                "time": "01:01:01",
+                "extra": "امروز"
+              },
+              "receipt_url": "https://vand.ar/e6W0G",
+              "type": "A2A",
+              "source": "WALLET",
+              "account": null
+            }
+          ]
+        }
+      }
+    }
   }
 }

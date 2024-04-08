@@ -7,6 +7,7 @@ from vandarpy.models.business.refund import Refund
 from vandarpy.models.business.transaction import TransactionFilter, Transaction
 from vandarpy.models.settlement.bank import Bank
 from vandarpy.models.settlement.settlement import Settlement
+from vandarpy.models.settlement.store import SettlementRequest, SettlementResponse, Type
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
@@ -125,3 +126,13 @@ class BusinessHandler(BaseHandler):
     @property
     def healthy_banks(self) -> List[Bank]:
         return [bank for bank in self.banks if bank.a2a.is_active and bank.a2a.has_ability and bank.a2a.is_healthy]
+
+    def request_settlement(self, amount: int, iban: str, payment_number: Optional[int] = None,
+                           notify_url: Optional[str] = None, description: Optional[str] = None,
+                           is_instant: Optional[bool] = False, type: Optional[Type] = Type.INSTANT
+                           ) -> List[SettlementResponse]:
+        return self._settlement_handler.create(
+            SettlementRequest(amount=amount, iban=iban, payment_number=payment_number, notify_url=notify_url,
+                              description=description, is_instant=is_instant, type=type
+                              )
+        )

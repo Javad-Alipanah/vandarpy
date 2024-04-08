@@ -17,3 +17,10 @@ def test_settlement_banks(client):
         client.get_request_strategy().endpoints[SettlementEndpoint.banks.format(business="test")]["GET"]["response"][
             "data"][i] for i, bank in enumerate(banks)
     )
+
+
+def test_request_settlement(client):
+    response = client.business.request_settlement(1000, "IR", 1234)
+    for i in range(len(response)):
+        assert response[i].to_dict() == client.get_request_strategy().endpoints[SettlementEndpoint.create.format(business="test")][
+            "POST"]["response"]["data"]["settlement"][i]

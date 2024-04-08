@@ -1,6 +1,7 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional, List
 
 from vandarpy.models.settlement.bank import Bank
+from vandarpy.models.settlement.store import SettlementResponse, SettlementRequest
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
@@ -45,5 +46,15 @@ class SettlementHandler(BaseHandler):
         try:
             response = self._client.get(SettlementEndpoint.banks.format(business=self._business))
             return [Bank.from_dict(bank) for bank in response['data']]
+        except APIClientError as e:
+            raise VandarError(e)
+
+    def create(self, request: SettlementRequest) -> List[SettlementResponse]:
+        try:
+            response = self._client.post(
+                SettlementEndpoint.create.format(business=self._business),
+                request.to_dict()
+            )
+            return [SettlementResponse.from_dict(settlement) for settlement in response['data']['settlement']]
         except APIClientError as e:
             raise VandarError(e)
