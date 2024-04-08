@@ -53,3 +53,9 @@ class Refund(BaseModel):
 
     def is_canceled(self) -> bool:
         return self.status == Status.CANCELED
+
+    def __str__(self) -> str:
+        return f"<Refund: {self.id} ({self.status})>"
+
+    def __repr__(self) -> str:
+        return f"<Refund: {self.id}>"

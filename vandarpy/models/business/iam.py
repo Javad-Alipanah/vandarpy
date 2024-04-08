@@ -47,3 +47,9 @@ class User(BaseModel):
 
     def is_reporter(self):
         return self.role_id == self.Role.REPORTER
+
+    def __str__(self):
+        return f"<User: {self.name} ({self.role})>"
+
+    def __repr__(self):
+        return f"<User: {self.name}>"

@@ -21,3 +21,9 @@ class Wallet(BaseModel):
             'payment_facilitator_wallet': self.payment_facilitator_balance,
             'currency': self.currency
         }
+
+    def __str__(self):
+        return f"<Wallet: {self.balance} ({self.currency})>"
+
+    def __repr__(self):
+        return f"<Wallet: {self.balance}>"

@@ -53,6 +53,12 @@ class Payment(BaseModel):
             d['port'] = d['port'].value
         return d
 
+    def __str__(self):
+        return f"<Payment: {self.amount} ({self.callback_url})>"
+
+    def __repr__(self):
+        return f"<Payment: {self.amount}>"
+
 
 class Transaction(BaseModel):
     class Code(Enum):
@@ -173,3 +179,9 @@ class Transaction(BaseModel):
         if 'port' in d:
             d['port'] = d['port'].value
         return d
+
+    def __str__(self):
+        return f"<Transaction: {self.trans_id} ({self.status})>"
+
+    def __repr__(self):
+        return f"<Transaction: {self.trans_id}>"

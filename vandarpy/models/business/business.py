@@ -132,7 +132,7 @@ class Business(BaseModel):
         self.owner = self.OwnerDetail.from_dict(kwargs.get('owner', {}))
 
     def __repr__(self):
-        return f"<Business {self.id}>"
+        return f"<Business: {self.id}>"
 
     def __str__(self):
-        return f"{self.id} ({self.business_name}, {self.business_name_fa})"
+        return f"<Business: {self.id} ({self.business_name}, {self.business_name_fa})>"

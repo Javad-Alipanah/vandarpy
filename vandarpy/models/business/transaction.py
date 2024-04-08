@@ -205,3 +205,9 @@ class Transaction(BaseModel):
 
     def is_verified(self):
         return self.verified == 1
+
+    def __str__(self):
+        return f"<Transaction: {self.id} ({self.status})>"
+
+    def __repr__(self):
+        return f"<Transaction: {self.id}>"

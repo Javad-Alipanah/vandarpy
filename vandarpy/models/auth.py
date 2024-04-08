@@ -28,7 +28,7 @@ class Token(BaseModel):
         )
 
     def __str__(self):
-        return f"{self.token_type} token with {self.expires_in} seconds expiration"
+        return f"<Token: {self.token_type} with {self.expires_in} seconds expiration>"
 
     def __repr__(self):
-        return f"<{self.token_type} ({self.expires_in})>"
+        return f"<Token: {self.token_type} ({self.expires_in})>"

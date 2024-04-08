@@ -37,3 +37,9 @@ class Settlement(BaseModel):
         data['settlement_date'] = data.pop('date').strftime("%Y-%m-%d")
         data['settlement_done_time_prediction'] = data.pop('done_time_prediction').strftime("%Y-%m-%d %H:%M:%S")
         return data
+
+    def __str__(self):
+        return f"<Settlement: {self.id} ({self.status})>"
+
+    def __repr__(self):
+        return f"<Settlement: {self.id}>"
