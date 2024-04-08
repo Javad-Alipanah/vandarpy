@@ -1336,5 +1336,13 @@
         }
       }
     }
+  },
+  "https://api.vandar.io/v2.1/business/test/settlement/123456789012": {
+    "DELETE": {
+      "response": {
+        "status": 1,
+        "message": "درخواست تسویه شما از دستور پرداخت خارج شد"
+      }
+    }
   }
 }

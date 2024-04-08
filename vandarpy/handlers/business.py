@@ -139,3 +139,6 @@ class BusinessHandler(BaseHandler):
 
     def get_settlement(self, settlement_id: str):
         return self._settlement_handler.get(settlement_id)
+
+    def cancel_settlement(self, transaction_id: int) -> str:
+        return self._settlement_handler.cancel(transaction_id)

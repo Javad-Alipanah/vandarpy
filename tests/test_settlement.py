@@ -30,3 +30,8 @@ def test_get_settlement(client):
     assert settlement.to_dict() == client.get_request_strategy().endpoints[
         SettlementEndpoint.get.format(business="test", settlement_id="12345678-1234-1234-1234-123456789012")
     ]["GET"]["response"]["data"]["settlement"]
+
+
+def test_cancel_settlement(client):
+    message = client.business.cancel_settlement(123456789012)
+    assert message == "درخواست تسویه شما از دستور پرداخت خارج شد"

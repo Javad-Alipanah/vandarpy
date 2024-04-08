@@ -67,3 +67,12 @@ class SettlementHandler(BaseHandler):
             return SettlementResponse.from_dict(response['data']['settlement'])
         except APIClientError as e:
             raise VandarError(e)
+
+    def cancel(self, transaction_id: int) -> str:
+        try:
+            response = self._client.delete(
+                SettlementEndpoint.cancel.format(business=self._business, transaction_id=transaction_id)
+            )
+            return response['message']
+        except APIClientError as e:
+            raise VandarError(e)
