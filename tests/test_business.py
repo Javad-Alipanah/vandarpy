@@ -25,14 +25,15 @@ def test_get_wallet(client):
 
 def test_get_transactions(client):
     transactions = client.business.transactions()
-    assert [t.to_dict() for t in transactions] == \
-           client.get_request_strategy().endpoints[InvoiceEndpoint.transactions.format(business="test")]["GET"][
-               "response"]["data"]
+    for i, t in enumerate(transactions):
+        assert t.to_dict() == client.get_request_strategy().endpoints[InvoiceEndpoint.transactions.format(business="test")]["GET"][
+               "response"]["data"][i]
 
 
 def test_refund_transaction(client):
     transaction_id = 12345
     refunds = client.business.refund(transaction_id)
-    assert all(refund.to_dict() == client.get_request_strategy().endpoints[
+    for i, refund in enumerate(refunds):
+        assert refund.to_dict() == client.get_request_strategy().endpoints[
                RefundEndpoint.refund.format(business="test", transaction_id=transaction_id)
-    ]["POST"]["response"]["data"]['results'][i] for i, refund in enumerate(refunds))
+        ]["POST"]["response"]["data"]['results'][i]
