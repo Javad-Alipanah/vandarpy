@@ -58,3 +58,12 @@ class SettlementHandler(BaseHandler):
             return [SettlementResponse.from_dict(settlement) for settlement in response['data']['settlement']]
         except APIClientError as e:
             raise VandarError(e)
+
+    def get(self, settlement_id: str) -> SettlementResponse:
+        try:
+            response = self._client.get(
+                SettlementEndpoint.get.format(business=self._business, settlement_id=settlement_id)
+            )
+            return SettlementResponse.from_dict(response['data']['settlement'])
+        except APIClientError as e:
+            raise VandarError(e)

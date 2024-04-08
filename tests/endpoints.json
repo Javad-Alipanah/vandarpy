@@ -1315,5 +1315,26 @@
         }
       }
     }
+  },
+  "https://api.vandar.io/v2.1/business/test/settlement/12345678-1234-1234-1234-123456789012": {
+    "GET": {
+      "response": {
+        "status": 1,
+        "data": {
+          "settlement": {
+            "id": "12345678-1234-1234-1234-123456789012",
+            "iban_id": 1234567,
+            "gateway_transaction_id": 123456789012,
+            "amount": 500000,
+            "payment_number": null,
+            "status": "DONE",
+            "wallet": 1234560,
+            "settlement_date": "2021-01-01",
+            "settlement_done_time_prediction": "2021-01-01 01:01:01",
+            "description": "Sample Settlement"
+          }
+        }
+      }
+    }
   }
 }

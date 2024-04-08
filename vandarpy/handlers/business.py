@@ -136,3 +136,6 @@ class BusinessHandler(BaseHandler):
                               description=description, is_instant=is_instant, type=type
                               )
         )
+
+    def get_settlement(self, settlement_id: str):
+        return self._settlement_handler.get(settlement_id)

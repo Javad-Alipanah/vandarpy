@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Optional, Union
 
 from persiantools.jdatetime import JalaliDateTime
 
@@ -87,7 +87,7 @@ class SettlementResponse(BaseModel):
     date: datetime
     time: datetime
     date_jalali: JalaliDateTime
-    done_time_prediction: JalaliDateTime
+    done_time_prediction: Union[JalaliDateTime, datetime]
     is_instant: bool
     prediction: Prediction
     receipt_url: str
@@ -98,20 +98,36 @@ class SettlementResponse(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.status = Status(self.status)
-        self.wallet = int(self.wallet)
+        if isinstance(self.wallet, str):
+            self.wallet = int(self.wallet)
+            self.convert_wallet = True
         self.date = datetime.strptime(kwargs['settlement_date'], "%Y-%m-%d")
-        self.time = datetime.strptime(kwargs['settlement_time'], "%H:%M:%S")
-        self.date_jalali = JalaliDateTime.strptime(kwargs['settlement_date_jalali'], "%Y/%m/%d")
-        self.done_time_prediction = JalaliDateTime.strptime(kwargs['settlement_done_time_prediction'],
-                                                            "%Y/%m/%d %H:%M:%S")
-        self.prediction = self.Prediction(**kwargs['prediction'])
-        self.type = Type(self.type)
+        if 'settlement_time' in kwargs:
+            self.time = datetime.strptime(kwargs['settlement_time'], "%H:%M:%S")
+        if 'settlement_date_jalali' in kwargs:
+            self.date_jalali = JalaliDateTime.strptime(kwargs['settlement_date_jalali'], "%Y/%m/%d")
+        if 'settlement_done_time_prediction' in kwargs:
+            try:
+                self.done_time_prediction = JalaliDateTime.strptime(kwargs['settlement_done_time_prediction'],
+                                                                    "%Y/%m/%d %H:%M:%S")
+            except ValueError:
+                self.done_time_prediction = datetime.strptime(kwargs['settlement_done_time_prediction'],
+                                                              "%Y-%m-%d %H:%M:%S")
+        if 'prediction' in kwargs:
+            self.prediction = self.Prediction(**kwargs['prediction'])
+        if 'type' in kwargs:
+            self.type = Type(self.type)
 
     def to_dict(self):
         data = super().to_dict().copy()
         del data['date']
-        del data['time']
-        del data['date_jalali']
-        del data['done_time_prediction']
-        data['wallet'] = str(data['wallet'])
+        if 'convert_wallet' in data and data['convert_wallet']:
+            data['wallet'] = str(data['wallet'])
+            del data['convert_wallet']
+        if 'time' in data:
+            del data['time']
+        if 'date_jalali' in data:
+            del data['date_jalali']
+        if 'done_time_prediction' in data:
+            del data['done_time_prediction']
         return data

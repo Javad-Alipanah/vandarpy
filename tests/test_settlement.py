@@ -20,5 +20,13 @@ def test_settlement_banks(client):
 def test_request_settlement(client):
     response = client.business.request_settlement(1000, "IR", 1234)
     for i in range(len(response)):
-        assert response[i].to_dict() == client.get_request_strategy().endpoints[SettlementEndpoint.create.format(business="test")][
-            "POST"]["response"]["data"]["settlement"][i]
+        assert response[i].to_dict() == client.get_request_strategy().endpoints[
+            SettlementEndpoint.create.format(business="test")
+        ]["POST"]["response"]["data"]["settlement"][i]
+
+
+def test_get_settlement(client):
+    settlement = client.business.get_settlement("12345678-1234-1234-1234-123456789012")
+    assert settlement.to_dict() == client.get_request_strategy().endpoints[
+        SettlementEndpoint.get.format(business="test", settlement_id="12345678-1234-1234-1234-123456789012")
+    ]["GET"]["response"]["data"]["settlement"]
