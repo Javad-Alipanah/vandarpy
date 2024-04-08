@@ -5,6 +5,7 @@ from vandarpy.endpoints.refund import RefundEndpoint
 from vandarpy.handlers.settlement import SettlementHandler
 from vandarpy.models.business.refund import Refund
 from vandarpy.models.business.transaction import TransactionFilter, Transaction
+from vandarpy.models.settlement.bank import Bank
 from vandarpy.models.settlement.settlement import Settlement
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -116,3 +117,11 @@ class BusinessHandler(BaseHandler):
     @property
     def settlements(self) -> List[Settlement]:
         return self._settlement_handler.settlements
+
+    @property
+    def banks(self) -> List[Bank]:
+        return self._settlement_handler.banks
+
+    @property
+    def healthy_banks(self) -> List[Bank]:
+        return [bank for bank in self.banks if bank.a2a.is_active and bank.a2a.has_ability and bank.a2a.is_healthy]

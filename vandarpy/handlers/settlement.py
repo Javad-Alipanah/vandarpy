@@ -1,4 +1,7 @@
 from typing import TYPE_CHECKING
+
+from vandarpy.models.settlement.bank import Bank
+
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
     # using type-hinting.
@@ -36,3 +39,11 @@ class SettlementHandler(BaseHandler):
             except APIClientError as e:
                 raise VandarError(e)
         return settlements
+
+    @property
+    def banks(self) -> list[Bank]:
+        try:
+            response = self._client.get(SettlementEndpoint.banks.format(business=self._business))
+            return [Bank.from_dict(bank) for bank in response['data']]
+        except APIClientError as e:
+            raise VandarError(e)
