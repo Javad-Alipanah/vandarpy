@@ -32,9 +32,11 @@ def _process_class(cls, label: str, include_children: bool, aliases: dict = None
 
     for subdomain, versions in endpoints['subdomains'].items():
         for version, resources in versions.items():
+            resource: str
             for resource, data in resources.items():
                 if label_pattern.match(data['label']):
                     url = data['full_path']
-                    name = resource if aliases is None or resource not in aliases else aliases[resource]
+                    name_without_label = resource.removeprefix(f"{label}.")
+                    name = name_without_label if aliases is None or name_without_label not in aliases else aliases[name_without_label]
                     setattr(cls, name, url)
     return cls

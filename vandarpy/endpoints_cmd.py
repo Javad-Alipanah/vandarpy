@@ -66,6 +66,10 @@ def generate_from_postman(file_path, logger, root_dir):
             continue
         partial_path = '/'.join(path).replace('{{', '{').replace('}}', '}')
         full_path = f"{scheme}://{subdomain}.vandar.io/{partial_path}"
+        name = f"{label}.{name}"
+        if name in endpoints['subdomains'][subdomain][version]:
+            logger.error(f"Duplicate endpoint: {name} in {label}; skipping")
+            continue
         endpoints['subdomains'][subdomain][version][name] = {
             'method': method,
             'path': partial_path,
@@ -124,7 +128,7 @@ def main():
                     )
         results.sort(key=lambda x: x[0])
         for label, endpoint in results:
-            print(f"{label}: {endpoint}")
+            print(f"{endpoint}")
     elif args.from_postman:
         logger.info("Generating endpoints from postman file: %s", args.from_postman)
         generate_from_postman(args.from_postman, logger, root_dir)

@@ -3,308 +3,468 @@ scheme: https
 subdomains:
   api:
     v2:
-      balance:
-        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/wallet
-        label: Customer.Wallet
-        method: GET
-        path: v2/business/{business}/customers/{customer_id}/wallet
-      business_wallet_balance:
-        full_path: https://api.vandar.io/v2/business/{business}/balance
-        label: Invoice
-        method: GET
-        path: v2/business/{business}/balance
-      customer_cash_in_code:
-        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/cash-in-code
-        label: CashInByCode
-        method: POST
-        path: v2/business/{business}/customers/{customer_id}/cash-in-code
-      deposit:
-        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/wallet/deposit
-        label: Customer.Wallet
-        method: POST
-        path: v2/business/{business}/customers/{customer_id}/wallet/deposit
-      destroy:
-        full_path: https://api.vandar.io/v2/business/{business}/customers/fields/{field_id}
-        label: Customer.Field
-        method: DELETE
-        path: v2/business/{business}/customers/fields/{field_id}
-      index:
-        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/cash-in-code
-        label: Customer.CashinCode
-        method: GET
-        path: v2/business/{business}/customers/{customer_id}/cash-in-code
-      info:
+      Business.info:
         full_path: https://api.vandar.io/v2/business/{business}
         label: Business
         method: GET
         path: v2/business/{business}
-      show:
-        full_path: https://api.vandar.io/v2/business/{business}/customers/fields/{field_id}
-        label: Customer.Field
-        method: GET
-        path: v2/business/{business}/customers/fields/{field_id}
-      store:
-        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/cash-in-code
-        label: Customer.CashinCode
-        method: POST
-        path: v2/business/{business}/customers/{customer_id}/cash-in-code
-      update:
-        full_path: https://api.vandar.io/v2/business/{business}/customers/fields/{field_id}
-        label: Customer.Field
-        method: PUT
-        path: v2/business/{business}/customers/fields/{field_id}
-      users:
+      Business.users:
         full_path: https://api.vandar.io/v2/business/{business}/iam
         label: Business
         method: GET
         path: v2/business/{business}/iam
-      withdraw:
+      CashInByCode.customer_cash_in_code:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/cash-in-code
+        label: CashInByCode
+        method: POST
+        path: v2/business/{business}/customers/{customer_id}/cash-in-code
+      Customer.CashinCode.index:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/cash-in-code
+        label: Customer.CashinCode
+        method: GET
+        path: v2/business/{business}/customers/{customer_id}/cash-in-code
+      Customer.CashinCode.store:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/cash-in-code
+        label: Customer.CashinCode
+        method: POST
+        path: v2/business/{business}/customers/{customer_id}/cash-in-code
+      Customer.Customer.destroy:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}
+        label: Customer.Customer
+        method: DELETE
+        path: v2/business/{business}/customers/{customer_id}
+      Customer.Customer.index:
+        full_path: https://api.vandar.io/v2/business/{business}/customers
+        label: Customer.Customer
+        method: GET
+        path: v2/business/{business}/customers
+      Customer.Customer.show:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}
+        label: Customer.Customer
+        method: GET
+        path: v2/business/{business}/customers/{customer_id}
+      Customer.Customer.store:
+        full_path: https://api.vandar.io/v2/business/{business}/customers
+        label: Customer.Customer
+        method: POST
+        path: v2/business/{business}/customers
+      Customer.Customer.update:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}
+        label: Customer.Customer
+        method: PUT
+        path: v2/business/{business}/customers/{customer_id}
+      Customer.CustomerCopy.index:
+        full_path: https://api.vandar.io/v2/business/{business}/customers
+        label: Customer.CustomerCopy
+        method: GET
+        path: v2/business/{business}/customers
+      Customer.CustomerCopy.show:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}
+        label: Customer.CustomerCopy
+        method: GET
+        path: v2/business/{business}/customers/{customer_id}
+      Customer.CustomerCopy.store:
+        full_path: https://api.vandar.io/v2/business/{business}/customers
+        label: Customer.CustomerCopy
+        method: POST
+        path: v2/business/{business}/customers
+      Customer.CustomerCopy.update:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}
+        label: Customer.CustomerCopy
+        method: PUT
+        path: v2/business/{business}/customers/{customer_id}
+      Customer.Field.destroy:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/fields/{field_id}
+        label: Customer.Field
+        method: DELETE
+        path: v2/business/{business}/customers/fields/{field_id}
+      Customer.Field.index:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/fields
+        label: Customer.Field
+        method: GET
+        path: v2/business/{business}/customers/fields
+      Customer.Field.show:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/fields/{field_id}
+        label: Customer.Field
+        method: GET
+        path: v2/business/{business}/customers/fields/{field_id}
+      Customer.Field.store:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/fields
+        label: Customer.Field
+        method: POST
+        path: v2/business/{business}/customers/fields
+      Customer.Field.update:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/fields/{field_id}
+        label: Customer.Field
+        method: PUT
+        path: v2/business/{business}/customers/fields/{field_id}
+      Customer.Log.index:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/logs
+        label: Customer.Log
+        method: GET
+        path: v2/business/{business}/customers/{customer_id}/logs
+      Customer.Transactions.index:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/transactions
+        label: Customer.Transactions
+        method: GET
+        path: v2/business/{business}/customers/{customer_id}/transactions
+      Customer.Wallet.balance:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/wallet
+        label: Customer.Wallet
+        method: GET
+        path: v2/business/{business}/customers/{customer_id}/wallet
+      Customer.Wallet.deposit:
+        full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/wallet/deposit
+        label: Customer.Wallet
+        method: POST
+        path: v2/business/{business}/customers/{customer_id}/wallet/deposit
+      Customer.Wallet.withdraw:
         full_path: https://api.vandar.io/v2/business/{business}/customers/{customer_id}/wallet/withdraw
         label: Customer.Wallet
         method: POST
         path: v2/business/{business}/customers/{customer_id}/wallet/withdraw
+      Invoice.business_wallet_balance:
+        full_path: https://api.vandar.io/v2/business/{business}/balance
+        label: Invoice
+        method: GET
+        path: v2/business/{business}/balance
     v2.1:
-      destroy:
+      Settlement.destroy:
         full_path: https://api.vandar.io/v2.1/business/{business}/settlement/{transaction_id}
         label: Settlement
         method: DELETE
         path: v2.1/business/{business}/settlement/{transaction_id}
-      list:
+      Settlement.list:
         full_path: https://api.vandar.io/v2.1/business/{business}/settlement
         label: Settlement
         method: GET
         path: v2.1/business/{business}/settlement
-      show:
+      Settlement.show:
         full_path: https://api.vandar.io/v2.1/business/{business}/settlement/{settlement_id}
         label: Settlement
         method: GET
         path: v2.1/business/{business}/settlement/{settlement_id}
     v3:
-      balance:
-        full_path: https://api.vandar.io/v3/business/{business}/cash-in/account/balance
-        label: CashIn
-        method: POST
-        path: v3/business/{business}/cash-in/account/balance
-      banks:
-        full_path: https://api.vandar.io/v3/business/{business}/settlement/banks
-        label: Settlement
-        method: GET
-        path: v3/business/{business}/settlement/banks
-      banks_list:
-        full_path: https://api.vandar.io/v3/business/{business}/subscription/banks/actives
-        label: DirectDebit.Banks
-        method: GET
-        path: v3/business/{business}/subscription/banks/actives
-      business_cash_in_code:
-        full_path: https://api.vandar.io/v3/business/{business}/cash-in/code
-        label: CashInByCode
-        method: GET
-        path: v3/business/{business}/cash-in/code
-      business_transactions_report:
-        full_path: https://api.vandar.io/v3/business/{business}/transaction
-        label: Invoice
-        method: GET
-        path: v3/business/{business}/transaction
-      calculation:
-        full_path: https://api.vandar.io/v3/business/{business}/subscription/authorization/{authorization_id}/calculation
-        label: DirectDebit.Authorization
-        method: GET
-        path: v3/business/{business}/subscription/authorization/{authorization_id}/calculation
-      cancel:
-        full_path: https://api.vandar.io/v3/business/{business}/subscription/withdrawal/{withdrawal_id}
-        label: DirectDebit.Withdrawal
-        method: PUT
-        path: v3/business/{business}/subscription/withdrawal/{withdrawal_id}
-      card_to_iban:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards/to-iban
-        label: Customer.Card
-        method: POST
-        path: v3/business/{business}/customers/{customer_id}/cards/to-iban
-      civil_registration:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/ocr/civil-registration
-        label: Customer.InquiryOCR
-        method: POST
-        path: v3/business/{business}/customers/inquiry/ocr/civil-registration
-      credit_card:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/ocr/credit-card
-        label: Customer.InquiryOCR
-        method: POST
-        path: v3/business/{business}/customers/inquiry/ocr/credit-card
-      deposit:
-        full_path: https://api.vandar.io/v3/business/{business}/cash-in/account/deposit
-        label: CashIn
-        method: POST
-        path: v3/business/{business}/cash-in/account/deposit
-      destroy:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards/{card}
-        label: Customer.Card
-        method: DELETE
-        path: v3/business/{business}/customers/{customer_id}/cards/{card}
-      face_match_with_national_card:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/kyc/face-match-with-national-card
-        label: Customer.InquiryAI
-        method: POST
-        path: v3/business/{business}/customers/inquiry/kyc/face-match-with-national-card
-      face_recognition:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/ocr/face-recognition
-        label: Customer.InquiryOCR
-        method: POST
-        path: v3/business/{business}/customers/inquiry/ocr/face-recognition
-      face_recognition_by_image:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/kyc/face-recognition-by-image
-        label: Customer.InquiryAI
-        method: POST
-        path: v3/business/{business}/customers/inquiry/kyc/face-recognition-by-image
-      face_recognition_by_video:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/kyc/face-recognition-by-video
-        label: Customer.InquiryAI
-        method: POST
-        path: v3/business/{business}/customers/inquiry/kyc/face-recognition-by-video
-      index:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards
-        label: Customer.Card
-        method: GET
-        path: v3/business/{business}/customers/{customer_id}/cards
-      inquiry:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards/{card}/inquiry
-        label: Customer.Card
-        method: POST
-        path: v3/business/{business}/customers/{customer_id}/cards/{card}/inquiry
-      kyc:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/authentication/kyc
-        label: Customer.Authentication
-        method: POST
-        path: v3/business/{business}/customers/{customer_id}/authentication/kyc
-      list:
-        full_path: https://api.vandar.io/v3/business/{business}/cash-in/account
-        label: CashIn
-        method: GET
-        path: v3/business/{business}/cash-in/account
-      logout:
+      Auth.logout:
         full_path: https://api.vandar.io/v3/logout
         label: Auth
         method: GET
         path: v3/logout
-      match_mobile_card:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/match-mobile-card
-        label: Customer.Inquiry
-        method: POST
-        path: v3/business/{business}/customers/match-mobile-card
-      national_card:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/ocr/national-card
-        label: Customer.InquiryOCR
-        method: POST
-        path: v3/business/{business}/customers/inquiry/ocr/national-card
-      national_code:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/national-code
-        label: Customer.Inquiry
-        method: POST
-        path: v3/business/{business}/customers/inquiry/national-code
-      national_code_iban_inquiry:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/national-code-iban-inquiry
-        label: Customer.Inquiry
-        method: POST
-        path: v3/business/{business}/customers/national-code-iban-inquiry
-      postal_code:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/postal-code
-        label: Customer.Inquiry
-        method: POST
-        path: v3/business/{business}/customers/inquiry/postal-code
-      random_gesture:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/kyc/random-gesture
-        label: Customer.InquiryAI
-        method: POST
-        path: v3/business/{business}/customers/inquiry/kyc/random-gesture
-      refresh_token:
+      Auth.refresh_token:
         full_path: https://api.vandar.io/v3/refreshtoken
         label: Auth
         method: POST
         path: v3/refreshtoken
-      refund:
-        full_path: https://api.vandar.io/v3/business/{business}/transaction/{transaction_id}/refund
-        label: Refund
+      CashIn.balance:
+        full_path: https://api.vandar.io/v3/business/{business}/cash-in/account/balance
+        label: CashIn
         method: POST
-        path: v3/business/{business}/transaction/{transaction_id}/refund
-      revoke:
-        full_path: https://api.vandar.io/v3/business/{business}/subscription/authorization/{authorization_id}
-        label: DirectDebit.Authorization
-        method: DELETE
-        path: v3/business/{business}/subscription/authorization/{authorization_id}
-      search:
-        full_path: https://api.vandar.io/v3/business/{business}/subscription/authorization/{authorization_id}/search
-        label: DirectDebit.Authorization
+        path: v3/business/{business}/cash-in/account/balance
+      CashIn.deposit:
+        full_path: https://api.vandar.io/v3/business/{business}/cash-in/account/deposit
+        label: CashIn
+        method: POST
+        path: v3/business/{business}/cash-in/account/deposit
+      CashIn.list:
+        full_path: https://api.vandar.io/v3/business/{business}/cash-in/account
+        label: CashIn
         method: GET
-        path: v3/business/{business}/subscription/authorization/{authorization_id}/search
-      set_default:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards/{card}/set-default
-        label: Customer.Card
-        method: POST
-        path: v3/business/{business}/customers/{customer_id}/cards/{card}/set-default
-      shahkar:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/authentication/shahkar
-        label: Customer.Authentication
-        method: POST
-        path: v3/business/{business}/customers/{customer_id}/authentication/shahkar
-      show:
-        full_path: https://api.vandar.io/v3/business/{business}/subscription/refunds/{refund_id}
-        label: DirectDebit.Refund
+        path: v3/business/{business}/cash-in/account
+      CashInByCode.business_cash_in_code:
+        full_path: https://api.vandar.io/v3/business/{business}/cash-in/code
+        label: CashInByCode
         method: GET
-        path: v3/business/{business}/subscription/refunds/{refund_id}
-      show_by_track_id:
-        full_path: https://api.vandar.io/v3/business/{business}/subscription/withdrawal/track-id/{track-id}
-        label: DirectDebit.Withdrawal
-        method: GET
-        path: v3/business/{business}/subscription/withdrawal/track-id/{track-id}
-      store:
-        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards
-        label: Customer.Card
-        method: POST
-        path: v3/business/{business}/customers/{customer_id}/cards
-      suspicious_transaction_change_status:
+        path: v3/business/{business}/cash-in/code
+      CashInByCode.suspicious_transaction_change_status:
         full_path: https://api.vandar.io/v3/business/{business}/cash-in/suspicious-payment/{id}
         label: CashInByCode
         method: POST
         path: v3/business/{business}/cash-in/suspicious-payment/{id}
-      suspicious_transactions_list:
+      CashInByCode.suspicious_transactions_list:
         full_path: https://api.vandar.io/v3/business/{business}/cash-in/suspicious-payment
         label: CashInByCode
         method: GET
         path: v3/business/{business}/cash-in/suspicious-payment
-      verify:
+      Customer.Authentication.NoneCustomer.kyc:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/authentication/kyc
+        label: Customer.Authentication.NoneCustomer
+        method: POST
+        path: v3/business/{business}/customers/authentication/kyc
+      Customer.Authentication.NoneCustomer.shahkar:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/authentication/shahkar
+        label: Customer.Authentication.NoneCustomer
+        method: POST
+        path: v3/business/{business}/customers/authentication/shahkar
+      Customer.Authentication.kyc:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/authentication/kyc
+        label: Customer.Authentication
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/authentication/kyc
+      Customer.Authentication.shahkar:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/authentication/shahkar
+        label: Customer.Authentication
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/authentication/shahkar
+      Customer.Card.card_to_iban:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards/to-iban
+        label: Customer.Card
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/cards/to-iban
+      Customer.Card.destroy:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards/{card}
+        label: Customer.Card
+        method: DELETE
+        path: v3/business/{business}/customers/{customer_id}/cards/{card}
+      Customer.Card.index:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards
+        label: Customer.Card
+        method: GET
+        path: v3/business/{business}/customers/{customer_id}/cards
+      Customer.Card.inquiry:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards/{card}/inquiry
+        label: Customer.Card
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/cards/{card}/inquiry
+      Customer.Card.set_default:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards/{card}/set-default
+        label: Customer.Card
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/cards/{card}/set-default
+      Customer.Card.store:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/cards
+        label: Customer.Card
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/cards
+      Customer.Iban.destroy:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/ibans/{iban}
+        label: Customer.Iban
+        method: DELETE
+        path: v3/business/{business}/customers/{customer_id}/ibans/{iban}
+      Customer.Iban.index:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/ibans
+        label: Customer.Iban
+        method: GET
+        path: v3/business/{business}/customers/{customer_id}/ibans
+      Customer.Iban.inquiry:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/ibans/{iban}/inquiry
+        label: Customer.Iban
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/ibans/{iban}/inquiry
+      Customer.Iban.set_default:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/ibans/{iban}/set-default
+        label: Customer.Iban
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/ibans/{iban}/set-default
+      Customer.Iban.store:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/{customer_id}/ibans
+        label: Customer.Iban
+        method: POST
+        path: v3/business/{business}/customers/{customer_id}/ibans
+      Customer.Inquiry.match_mobile_card:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/match-mobile-card
+        label: Customer.Inquiry
+        method: POST
+        path: v3/business/{business}/customers/match-mobile-card
+      Customer.Inquiry.national_code:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/national-code
+        label: Customer.Inquiry
+        method: POST
+        path: v3/business/{business}/customers/inquiry/national-code
+      Customer.Inquiry.national_code_iban_inquiry:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/national-code-iban-inquiry
+        label: Customer.Inquiry
+        method: POST
+        path: v3/business/{business}/customers/national-code-iban-inquiry
+      Customer.Inquiry.postal_code:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/postal-code
+        label: Customer.Inquiry
+        method: POST
+        path: v3/business/{business}/customers/inquiry/postal-code
+      Customer.InquiryAI.face_match_with_national_card:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/kyc/face-match-with-national-card
+        label: Customer.InquiryAI
+        method: POST
+        path: v3/business/{business}/customers/inquiry/kyc/face-match-with-national-card
+      Customer.InquiryAI.face_recognition_by_image:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/kyc/face-recognition-by-image
+        label: Customer.InquiryAI
+        method: POST
+        path: v3/business/{business}/customers/inquiry/kyc/face-recognition-by-image
+      Customer.InquiryAI.face_recognition_by_video:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/kyc/face-recognition-by-video
+        label: Customer.InquiryAI
+        method: POST
+        path: v3/business/{business}/customers/inquiry/kyc/face-recognition-by-video
+      Customer.InquiryAI.random_gesture:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/kyc/random-gesture
+        label: Customer.InquiryAI
+        method: POST
+        path: v3/business/{business}/customers/inquiry/kyc/random-gesture
+      Customer.InquiryOCR.civil_registration:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/ocr/civil-registration
+        label: Customer.InquiryOCR
+        method: POST
+        path: v3/business/{business}/customers/inquiry/ocr/civil-registration
+      Customer.InquiryOCR.credit_card:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/ocr/credit-card
+        label: Customer.InquiryOCR
+        method: POST
+        path: v3/business/{business}/customers/inquiry/ocr/credit-card
+      Customer.InquiryOCR.face_recognition:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/ocr/face-recognition
+        label: Customer.InquiryOCR
+        method: POST
+        path: v3/business/{business}/customers/inquiry/ocr/face-recognition
+      Customer.InquiryOCR.national_card:
+        full_path: https://api.vandar.io/v3/business/{business}/customers/inquiry/ocr/national-card
+        label: Customer.InquiryOCR
+        method: POST
+        path: v3/business/{business}/customers/inquiry/ocr/national-card
+      DirectDebit.Authorization.calculation:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/authorization/{authorization_id}/calculation
+        label: DirectDebit.Authorization
+        method: GET
+        path: v3/business/{business}/subscription/authorization/{authorization_id}/calculation
+      DirectDebit.Authorization.index:
+        full_path: https://api.vandar.io/v3/business/{business}ess}/subscription/authorization
+        label: DirectDebit.Authorization
+        method: GET
+        path: v3/business/{business}ess}/subscription/authorization
+      DirectDebit.Authorization.revoke:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/authorization/{authorization_id}
+        label: DirectDebit.Authorization
+        method: DELETE
+        path: v3/business/{business}/subscription/authorization/{authorization_id}
+      DirectDebit.Authorization.search:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/authorization/{authorization_id}/search
+        label: DirectDebit.Authorization
+        method: GET
+        path: v3/business/{business}/subscription/authorization/{authorization_id}/search
+      DirectDebit.Authorization.store:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/authorization/store
+        label: DirectDebit.Authorization
+        method: POST
+        path: v3/business/{business}/subscription/authorization/store
+      DirectDebit.Authorization.verify:
         full_path: https://api.vandar.io/v3/business/{business}/subscription/authorization/{authorization_id}/verify
         label: DirectDebit.Authorization
         method: PATCH
         path: v3/business/{business}/subscription/authorization/{authorization_id}/verify
+      DirectDebit.Banks.banks_list:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/banks/actives
+        label: DirectDebit.Banks
+        method: GET
+        path: v3/business/{business}/subscription/banks/actives
+      DirectDebit.Refund.index:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/refunds
+        label: DirectDebit.Refund
+        method: GET
+        path: v3/business/{business}/subscription/refunds
+      DirectDebit.Refund.show:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/refunds/{refund_id}
+        label: DirectDebit.Refund
+        method: GET
+        path: v3/business/{business}/subscription/refunds/{refund_id}
+      DirectDebit.Refund.store:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/refunds
+        label: DirectDebit.Refund
+        method: POST
+        path: v3/business/{business}/subscription/refunds
+      DirectDebit.Withdrawal.cancel:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/withdrawal/{withdrawal_id}
+        label: DirectDebit.Withdrawal
+        method: PUT
+        path: v3/business/{business}/subscription/withdrawal/{withdrawal_id}
+      DirectDebit.Withdrawal.index:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/withdrawal
+        label: DirectDebit.Withdrawal
+        method: GET
+        path: v3/business/{business}/subscription/withdrawal
+      DirectDebit.Withdrawal.show:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/withdrawal/{withdrawal_id}
+        label: DirectDebit.Withdrawal
+        method: GET
+        path: v3/business/{business}/subscription/withdrawal/{withdrawal_id}
+      DirectDebit.Withdrawal.show_by_track_id:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/withdrawal/track-id/{track-id}
+        label: DirectDebit.Withdrawal
+        method: GET
+        path: v3/business/{business}/subscription/withdrawal/track-id/{track-id}
+      DirectDebit.Withdrawal.store:
+        full_path: https://api.vandar.io/v3/business/{business}/subscription/withdrawal/store
+        label: DirectDebit.Withdrawal
+        method: POST
+        path: v3/business/{business}/subscription/withdrawal/store
+      Invoice.business_transactions_report:
+        full_path: https://api.vandar.io/v3/business/{business}/transaction
+        label: Invoice
+        method: GET
+        path: v3/business/{business}/transaction
+      QueuedSettlement.cancel:
+        full_path: https://api.vandar.io/v3/business/{business}/settlement/queued/cancel
+        label: QueuedSettlement
+        method: POST
+        path: v3/business/{business}/settlement/queued/cancel
+      QueuedSettlement.list:
+        full_path: https://api.vandar.io/v3/business/{business}/settlement/queued
+        label: QueuedSettlement
+        method: GET
+        path: v3/business/{business}/settlement/queued
+      QueuedSettlement.show:
+        full_path: https://api.vandar.io/v3/business/{business}/settlement/queued/{queue_id}
+        label: QueuedSettlement
+        method: GET
+        path: v3/business/{business}/settlement/queued/{queue_id}
+      QueuedSettlement.store:
+        full_path: https://api.vandar.io/v3/business/{business}/settlement/queued
+        label: QueuedSettlement
+        method: POST
+        path: v3/business/{business}/settlement/queued
+      Refund.refund:
+        full_path: https://api.vandar.io/v3/business/{business}/transaction/{transaction_id}/refund
+        label: Refund
+        method: POST
+        path: v3/business/{business}/transaction/{transaction_id}/refund
+      Settlement.banks:
+        full_path: https://api.vandar.io/v3/business/{business}/settlement/banks
+        label: Settlement
+        method: GET
+        path: v3/business/{business}/settlement/banks
+      Settlement.store:
+        full_path: https://api.vandar.io/v3/business/{business}/settlement/store
+        label: Settlement
+        method: POST
+        path: v3/business/{business}/settlement/store
   batch:
     v2:
-      list:
+      BatchSettlement.list:
         full_path: https://batch.vandar.io/api/v2/business/{business}/batches
         label: BatchSettlement
         method: GET
         path: api/v2/business/{business}/batches
-      show:
+      BatchSettlement.show:
         full_path: https://batch.vandar.io/api/v2/business/{business}/batch-settlements/{batch_id}
         label: BatchSettlement
         method: GET
         path: api/v2/business/{business}/batch-settlements/{batch_id}
-      store:
+      BatchSettlement.store:
         full_path: https://batch.vandar.io/api/v2/business/{business}/batches-settlement
         label: BatchSettlement
         method: POST
         path: api/v2/business/{business}/batches-settlement
   ipg:
     v3:
-      send:
+      IPG.send:
         full_path: https://ipg.vandar.io/api/v3/send
         label: IPG
         method: POST
         path: api/v3/send
-      transaction_info:
+      IPG.transaction_info:
         full_path: https://ipg.vandar.io/api/v3/transaction
         label: IPG
         method: POST
         path: api/v3/transaction
-      verify:
+      IPG.verify:
         full_path: https://ipg.vandar.io/api/v3/verify
         label: IPG
         method: POST
