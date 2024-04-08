@@ -1,8 +1,9 @@
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING, cast, Optional, List
 
 from apiclient.exceptions import APIClientError
 
 from vandarpy.exceptions import VandarError
+from vandarpy.models.business.transaction import Port
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
@@ -39,6 +40,17 @@ class IPGHandler(BaseHandler):
     @staticmethod
     def get_redirect_url(token: str) -> str:
         return IPGEndpoint.redirect.format(token=token)
+
+    def get_payment_url(self, amount: int, callback_url: str, mobile_number: Optional[str] = None,
+                        factor_number: Optional[str] = None, description: Optional[str] = None,
+                        national_code: Optional[str] = None, valid_card_numbers: Optional[List[str]] = None,
+                        comment: Optional[str] = None, port: Optional[Port] = None) -> str:
+        payment = Payment(api_key=self._api_key, amount=amount, callback_url=callback_url,
+                          mobile_number=mobile_number, factor_number=factor_number, description=description,
+                          national_code=national_code, valid_card_numbers=valid_card_numbers, comment=comment,
+                          port=port)
+        token = self.get_token(payment)
+        return self.get_redirect_url(token)
 
     def get_transaction_info(self, token: str) -> Transaction:
         return cast(
