@@ -137,6 +137,10 @@ class BusinessHandler(BaseHandler):
                               )
         )
 
+    @property
+    def batch_settlements(self) -> List[BatchSettlementResponse]:
+        return self._settlement_handler.batch_settlements
+
     def request_batch_settlement(self, requests: List[SettlementRequest]) -> BatchSettlementResponse:
         return self._settlement_handler.create_batch(requests)
 

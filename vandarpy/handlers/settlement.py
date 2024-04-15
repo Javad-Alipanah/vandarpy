@@ -76,6 +76,21 @@ class SettlementHandler(BaseHandler):
         except APIClientError as e:
             raise VandarError(e)
 
+    @property
+    def batch_settlements(self) -> List[BatchSettlementResponse]:
+        try:
+            page = 1
+            last_page = 1
+            results = []
+            while page <= last_page:
+                response = self._client.get(BatchSettlementEndpoint.list.format(business=self._business), params={'page': page})
+                results.extend([BatchSettlementResponse.from_dict(batch) for batch in response['data']])
+                last_page = response['meta']['last_page']
+                page += 1
+            return results
+        except APIClientError as e:
+            raise VandarError(e)
+
     def get(self, settlement_id: str) -> SettlementResponse:
         try:
             response = self._client.get(

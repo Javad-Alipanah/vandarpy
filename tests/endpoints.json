@@ -1369,5 +1369,129 @@
         "cancelable_datetime": null
       }
     }
+  },
+  "https://batch.vandar.io/api/v2/business/test/batches": {
+    "GET": {
+      "response": {
+        "data": [
+          {
+            "batch_id": "eb44ba9a2322420d8a2e0a979a95c4f410620bb416492bef20a01f8cc42d593d4ccb7acc4ca4e2ce7f7935da7f7544ae974f43270d57908815537381b9b8235e",
+            "status": {
+              "total_count": 1,
+              "total_amount": 50000,
+              "init_count": 0,
+              "init_amount": 0,
+              "submitted_count": 1,
+              "submitted_amount": 50000,
+              "failed_count": 0,
+              "failed_amount": 0,
+              "pending_count": 0,
+              "pending_amount": 0,
+              "canceled_count": 0,
+              "canceled_amount": 0
+            },
+            "total_amount": 50000,
+            "created_at": 1713192129,
+            "cancelable": false,
+            "cancelable_datetime": null
+          },
+          {
+            "batch_id": "f9e8520cd3f7b40ef239f269637023bbbaa35dfdfdb71bda38680d48c79246defcef2d6006061cd580bf07af237083e9c0ea638be264c1bacf636fd6cc9db6a0",
+            "status": {
+              "total_count": 1,
+              "total_amount": 50000,
+              "init_count": 0,
+              "init_amount": 0,
+              "submitted_count": 1,
+              "submitted_amount": 50000,
+              "failed_count": 0,
+              "failed_amount": 0,
+              "pending_count": 0,
+              "pending_amount": 0,
+              "canceled_count": 0,
+              "canceled_amount": 0
+            },
+            "total_amount": 50000,
+            "created_at": 1713191373,
+            "cancelable": false,
+            "cancelable_datetime": null
+          },
+          {
+            "batch_id": "1bf52da33fa659da1b812f3c57a6f0bb1d51fcd9347dcd9a242dcefd634264d63302e96bb7814ad6e55c4817fa5d2fe1923c894f206baeb886a4066447ebb177",
+            "status": {
+              "total_count": 1,
+              "total_amount": 50000,
+              "init_count": 0,
+              "init_amount": 0,
+              "submitted_count": 1,
+              "submitted_amount": 50000,
+              "failed_count": 0,
+              "failed_amount": 0,
+              "pending_count": 0,
+              "pending_amount": 0,
+              "canceled_count": 0,
+              "canceled_amount": 0
+            },
+            "total_amount": 50000,
+            "created_at": 1712608397,
+            "cancelable": false,
+            "cancelable_datetime": null
+          },
+          {
+            "batch_id": "70048f7e44c6cb1268d0fbeec61af4d6b93f32525c8127659b6dd3daac75d2335f449d87ba042c78e8636741f90ca41fad98c0c7f8540d685d9a4bddbb4b5d12",
+            "status": {
+              "total_count": 1,
+              "total_amount": 50000,
+              "init_count": 0,
+              "init_amount": 0,
+              "submitted_count": 1,
+              "submitted_amount": 50000,
+              "failed_count": 0,
+              "failed_amount": 0,
+              "pending_count": 0,
+              "pending_amount": 0,
+              "canceled_count": 0,
+              "canceled_amount": 0
+            },
+            "total_amount": 50000,
+            "created_at": 1712607920,
+            "cancelable": false,
+            "cancelable_datetime": null
+          }
+        ],
+        "links": {
+          "first": "http://batch.vandar.io/api/v2/business/AdCentizer/batches?page=1",
+          "last": "http://batch.vandar.io/api/v2/business/AdCentizer/batches?page=1",
+          "prev": null,
+          "next": null
+        },
+        "meta": {
+          "current_page": 1,
+          "from": 1,
+          "last_page": 1,
+          "links": [
+            {
+              "url": null,
+              "label": "&laquo; قبلی",
+              "active": false
+            },
+            {
+              "url": "http://batch.vandar.io/api/v2/business/AdCentizer/batches?page=1",
+              "label": "1",
+              "active": true
+            },
+            {
+              "url": null,
+              "label": "بعدی &raquo;",
+              "active": false
+            }
+          ],
+          "path": "http://batch.vandar.io/api/v2/business/AdCentizer/batches",
+          "per_page": 10,
+          "to": 4,
+          "total": 4
+        }
+      }
+    }
   }
 }

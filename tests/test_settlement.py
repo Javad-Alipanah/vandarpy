@@ -47,3 +47,11 @@ def test_request_batch_settlement(client):
     assert response.to_dict() == client.get_request_strategy().endpoints[
         BatchSettlementEndpoint.create.format(business="test")
     ]["POST"]["response"]
+
+
+def test_batch_settlements(client):
+    settlements = client.business.batch_settlements
+    for i, settlement in enumerate(settlements):
+        assert settlement.to_dict() == client.get_request_strategy().endpoints[
+            BatchSettlementEndpoint.list.format(business="test")
+        ]["GET"]["response"]["data"][i]
