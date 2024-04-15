@@ -1,4 +1,6 @@
+from vandarpy.endpoints.batch_settlement import BatchSettlementEndpoint
 from vandarpy.endpoints.settlement import SettlementEndpoint
+from vandarpy.models.settlement.store import SettlementRequest
 
 
 def test_settlement_list(client):
@@ -35,3 +37,13 @@ def test_get_settlement(client):
 def test_cancel_settlement(client):
     message = client.business.cancel_settlement(123456789012)
     assert message == "درخواست تسویه شما از دستور پرداخت خارج شد"
+
+
+def test_request_batch_settlement(client):
+    requests = [
+        SettlementRequest(amount=50000, iban="IR123456789012345678901234", payment_number=1234, is_instant=True),
+    ]
+    response = client.business.request_batch_settlement(requests)
+    assert response.to_dict() == client.get_request_strategy().endpoints[
+        BatchSettlementEndpoint.create.format(business="test")
+    ]["POST"]["response"]

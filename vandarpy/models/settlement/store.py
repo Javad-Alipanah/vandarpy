@@ -131,3 +131,40 @@ class SettlementResponse(BaseModel):
         if 'done_time_prediction' in data:
             del data['done_time_prediction']
         return data
+
+
+class BatchSettlementResponse(BaseModel):
+    class Status(BaseModel):
+        total_count: int
+        total_amount: int
+        init_count: int
+        init_amount: int
+        submitted_count: int
+        submitted_amount: int
+        failed_count: int
+        failed_amount: int
+        pending_count: int
+        pending_amount: int
+        canceled_count: int
+        canceled_amount: int
+
+    batch_id: str
+    status: Status
+    total_amount: int
+    created_at: datetime
+    cancelable: bool
+    cancelable_datetime: Optional[datetime]
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.created_at = datetime.fromtimestamp(kwargs['created_at'])
+        if 'cancelable_datetime' in kwargs and kwargs['cancelable_datetime'] is not None:
+            self.cancelable_datetime = datetime.fromtimestamp(kwargs['cancelable_datetime'])
+        self.status = self.Status(**kwargs['status'])
+
+    def to_dict(self):
+        data = super().to_dict()
+        data['created_at'] = int(data['created_at'].timestamp())
+        if 'cancelable_datetime' in data and data['cancelable_datetime'] is not None:
+            data['cancelable_datetime'] = int(data['cancelable_datetime'].timestamp())
+        return data

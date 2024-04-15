@@ -1,7 +1,10 @@
+import json
+from hashlib import sha512
 from typing import TYPE_CHECKING, Optional, List
 
+from vandarpy.endpoints.batch_settlement import BatchSettlementEndpoint
 from vandarpy.models.settlement.bank import Bank
-from vandarpy.models.settlement.store import SettlementResponse, SettlementRequest
+from vandarpy.models.settlement.store import SettlementResponse, SettlementRequest, BatchSettlementResponse
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
@@ -56,6 +59,20 @@ class SettlementHandler(BaseHandler):
                 request.to_dict()
             )
             return [SettlementResponse.from_dict(settlement) for settlement in response['data']['settlement']]
+        except APIClientError as e:
+            raise VandarError(e)
+
+    def create_batch(self, requests: List[SettlementRequest]) -> BatchSettlementResponse:
+        data = {
+            'batches_settlement': [request.to_dict() for request in requests]
+        }
+        data['batch_id'] = sha512(json.dumps(data['batches_settlement']).replace(' ', '').encode('utf-8')).hexdigest()
+        try:
+            response = self._client.post(
+                BatchSettlementEndpoint.create.format(business=self._business),
+                data
+            )
+            return BatchSettlementResponse.from_dict(response)
         except APIClientError as e:
             raise VandarError(e)
 

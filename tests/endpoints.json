@@ -1344,5 +1344,30 @@
         "message": "درخواست تسویه شما از دستور پرداخت خارج شد"
       }
     }
+  },
+  "https://batch.vandar.io/api/v2/business/test/batches-settlement": {
+    "POST": {
+      "response": {
+        "batch_id": "eb44ba9a2322420d8a2e0a979a95c4f410620bb416492bef20a01f8cc42d593d4ccb7acc4ca4e2ce7f7935da7f7544ae974f43270d57908815537381b9b8235e",
+        "status": {
+          "total_count": 1,
+          "total_amount": 50000,
+          "init_count": 1,
+          "init_amount": 50000,
+          "submitted_count": 0,
+          "submitted_amount": 0,
+          "failed_count": 0,
+          "failed_amount": 0,
+          "pending_count": 0,
+          "pending_amount": 0,
+          "canceled_count": 0,
+          "canceled_amount": 0
+        },
+        "total_amount": 50000,
+        "created_at": 1713192129,
+        "cancelable": false,
+        "cancelable_datetime": null
+      }
+    }
   }
 }
