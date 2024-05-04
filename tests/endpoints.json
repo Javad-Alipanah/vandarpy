@@ -1460,8 +1460,8 @@
           }
         ],
         "links": {
-          "first": "http://batch.vandar.io/api/v2/business/AdCentizer/batches?page=1",
-          "last": "http://batch.vandar.io/api/v2/business/AdCentizer/batches?page=1",
+          "first": "http://batch.vandar.io/api/v2/business/test/batches?page=1",
+          "last": "http://batch.vandar.io/api/v2/business/test/batches?page=1",
           "prev": null,
           "next": null
         },
@@ -1476,7 +1476,7 @@
               "active": false
             },
             {
-              "url": "http://batch.vandar.io/api/v2/business/AdCentizer/batches?page=1",
+              "url": "http://batch.vandar.io/api/v2/business/test/batches?page=1",
               "label": "1",
               "active": true
             },
@@ -1486,7 +1486,7 @@
               "active": false
             }
           ],
-          "path": "http://batch.vandar.io/api/v2/business/AdCentizer/batches",
+          "path": "http://batch.vandar.io/api/v2/business/test/batches",
           "per_page": 10,
           "to": 4,
           "total": 4
