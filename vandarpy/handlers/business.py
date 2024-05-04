@@ -144,7 +144,7 @@ class BusinessHandler(BaseHandler):
     def request_batch_settlement(self, requests: List[SettlementRequest]) -> BatchSettlementResponse:
         return self._settlement_handler.create_batch(requests)
 
-    def get_settlement(self, settlement_id: str):
+    def get_settlement(self, settlement_id: str) -> SettlementResponse:
         return self._settlement_handler.get(settlement_id)
 
     def cancel_settlement(self, transaction_id: int) -> str:
