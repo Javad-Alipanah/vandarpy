@@ -55,3 +55,11 @@ def test_batch_settlements(client):
         assert settlement.to_dict() == client.get_request_strategy().endpoints[
             BatchSettlementEndpoint.list.format(business="test")
         ]["GET"]["response"]["data"][i]
+
+
+def test_get_batch_settlement(client):
+    settlements = client.business.get_batch_settlement("f9e8520cd3f7b40ef239f269637023bbbaa35dfdfdb71bda38680d48c79246defcef2d6006061cd580bf07af237083e9c0ea638be264c1bacf636fd6cc9db6a0")
+    for i, settlement in enumerate(settlements):
+        assert settlement.to_dict() == client.get_request_strategy().endpoints[
+            BatchSettlementEndpoint.get.format(business="test", batch_id="f9e8520cd3f7b40ef239f269637023bbbaa35dfdfdb71bda38680d48c79246defcef2d6006061cd580bf07af237083e9c0ea638be264c1bacf636fd6cc9db6a0")
+        ]["GET"]["response"]["data"][i]

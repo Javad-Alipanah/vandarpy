@@ -1493,5 +1493,57 @@
         }
       }
     }
+  },
+  "https://batch.vandar.io/api/v2/business/test/batch-settlements/f9e8520cd3f7b40ef239f269637023bbbaa35dfdfdb71bda38680d48c79246defcef2d6006061cd580bf07af237083e9c0ea638be264c1bacf636fd6cc9db6a0": {
+    "GET": {
+      "response": {
+        "data": [
+          {
+            "id": "12345678-1234-1234-1234-123456789012",
+            "track_id": "12345678-1234-1234-1234-123456789012",
+            "payment_number": "1",
+            "amount": "50000",
+            "iban": "IR123456789012345678901234",
+            "iban_owner_name": "تست تست پرور",
+            "status": "SUBMITTED",
+            "type": "ACH",
+            "transaction_id": 171317359752,
+            "error_message": null
+          }
+        ],
+        "links": {
+          "first": "http://batch.vandar.io/api/v2/business/test/batch-settlements/f9e8520cd3f7b40ef239f269637023bbbaa35dfdfdb71bda38680d48c79246defcef2d6006061cd580bf07af237083e9c0ea638be264c1bacf636fd6cc9db6a0?page=1",
+          "last": "http://batch.vandar.io/api/v2/business/test/batch-settlements/f9e8520cd3f7b40ef239f269637023bbbaa35dfdfdb71bda38680d48c79246defcef2d6006061cd580bf07af237083e9c0ea638be264c1bacf636fd6cc9db6a0?page=1",
+          "prev": null,
+          "next": null
+        },
+        "meta": {
+          "current_page": 1,
+          "from": 1,
+          "last_page": 1,
+          "links": [
+            {
+              "url": null,
+              "label": "&laquo; قبلی",
+              "active": false
+            },
+            {
+              "url": "http://batch.vandar.io/api/v2/business/test/batch-settlements/f9e8520cd3f7b40ef239f269637023bbbaa35dfdfdb71bda38680d48c79246defcef2d6006061cd580bf07af237083e9c0ea638be264c1bacf636fd6cc9db6a0?page=1",
+              "label": "1",
+              "active": true
+            },
+            {
+              "url": null,
+              "label": "بعدی &raquo;",
+              "active": false
+            }
+          ],
+          "path": "http://batch.vandar.io/api/v2/business/test/batch-settlements/f9e8520cd3f7b40ef239f269637023bbbaa35dfdfdb71bda38680d48c79246defcef2d6006061cd580bf07af237083e9c0ea638be264c1bacf636fd6cc9db6a0",
+          "per_page": 20,
+          "to": 1,
+          "total": 1
+        }
+      }
+    }
   }
 }

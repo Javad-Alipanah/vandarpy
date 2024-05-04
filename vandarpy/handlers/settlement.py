@@ -4,7 +4,8 @@ from typing import TYPE_CHECKING, Optional, List
 
 from vandarpy.endpoints.batch_settlement import BatchSettlementEndpoint
 from vandarpy.models.settlement.bank import Bank
-from vandarpy.models.settlement.store import SettlementResponse, SettlementRequest, BatchSettlementResponse
+from vandarpy.models.settlement.store import SettlementResponse, SettlementRequest, BatchSettlementResponse, \
+    BatchSettlementDetail
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
@@ -97,6 +98,24 @@ class SettlementHandler(BaseHandler):
                 SettlementEndpoint.get.format(business=self._business, settlement_id=settlement_id)
             )
             return SettlementResponse.from_dict(response['data']['settlement'])
+        except APIClientError as e:
+            raise VandarError(e)
+
+    def get_batch(self, batch_id: str) -> List[BatchSettlementDetail]:
+        page = 1
+        per_page = 10
+        last_page = 1
+        results = []
+        try:
+            while page <= last_page:
+                response = self._client.get(
+                    BatchSettlementEndpoint.get.format(business=self._business, batch_id=batch_id),
+                    params={'page': page, 'per_page': per_page}
+                )
+                last_page = response['meta']['last_page']
+                page += 1
+                results.extend([BatchSettlementDetail.from_dict(batch) for batch in response['data']])
+            return results
         except APIClientError as e:
             raise VandarError(e)
 

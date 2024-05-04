@@ -168,3 +168,34 @@ class BatchSettlementResponse(BaseModel):
         if 'cancelable_datetime' in data and data['cancelable_datetime'] is not None:
             data['cancelable_datetime'] = int(data['cancelable_datetime'].timestamp())
         return data
+
+
+class BatchSettlementDetail(BaseModel):
+    id: str
+    track_id: str
+    payment_number: int
+    amount: int
+    iban: str
+    status: Status
+    type: Type
+    transaction_id: int
+    error_message: Optional[str]
+    description: Optional[str]
+
+    def __init__(self, id: str, track_id: str, payment_number: int, amount: int, iban: str, status: Status,
+                 transaction_id: int, error_message: Optional[str] = None, description: Optional[str] = None, **kwargs):
+        super().__init__(id=id, track_id=track_id, payment_number=payment_number, amount=amount, iban=iban,
+                         status=status, transaction_id=transaction_id, error_message=error_message,
+                         description=description, **kwargs)
+        self.status = Status(self.status)
+        self.payment_number = int(self.payment_number)
+        self.amount = int(self.amount)
+        self.transaction_id = int(self.transaction_id)
+
+    def to_dict(self):
+        data = super().to_dict().copy()
+        data['payment_number'] = str(data['payment_number'])
+        data['amount'] = str(data['amount'])
+        if data['description'] is None:
+            del data['description']
+        return data

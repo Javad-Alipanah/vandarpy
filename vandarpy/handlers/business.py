@@ -7,7 +7,8 @@ from vandarpy.models.business.refund import Refund
 from vandarpy.models.business.transaction import TransactionFilter, Transaction
 from vandarpy.models.settlement.bank import Bank
 from vandarpy.models.settlement.settlement import Settlement
-from vandarpy.models.settlement.store import SettlementRequest, SettlementResponse, Type, BatchSettlementResponse
+from vandarpy.models.settlement.store import SettlementRequest, SettlementResponse, Type, BatchSettlementResponse, \
+    BatchSettlementDetail
 
 if TYPE_CHECKING:  # pragma: no cover
     # Stupid way of getting around cyclic imports when
@@ -146,6 +147,9 @@ class BusinessHandler(BaseHandler):
 
     def get_settlement(self, settlement_id: str) -> SettlementResponse:
         return self._settlement_handler.get(settlement_id)
+
+    def get_batch_settlement(self, batch_id: str) -> List[BatchSettlementDetail]:
+        return self._settlement_handler.get_batch(batch_id)
 
     def cancel_settlement(self, transaction_id: int) -> str:
         return self._settlement_handler.cancel(transaction_id)
